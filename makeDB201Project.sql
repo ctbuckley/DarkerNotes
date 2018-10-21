@@ -19,5 +19,7 @@ CREATE TABLE Files (
 CREATE TABLE Access (
 	userID INT(11) NOT NULL,
     fileID INT(11) NOT NULL,
-    accessID INT(11) NOT NULL PRIMARY KEY
+    accessID INT(11) NOT NULL PRIMARY KEY,
+    foreign key fk1(userID) REFERENCES Users(userID),
+    foreign key fk2(fileID) REFERENCES Files(fileID)
 );
