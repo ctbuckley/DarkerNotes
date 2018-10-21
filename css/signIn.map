@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../sass/signIn.css",
+	"sources": [
+		"../sass/signIn.scss"
+	],
+	"sourcesContent": [
+		"#menu {\n    background-color: lightblue;\n}\n"
+	],
+	"mappings": ";AAAA,AAAA,KAAK,CAAC;EACF,gBAAgB,EAAE,SAAU;CAC/B",
+	"names": []
+}
