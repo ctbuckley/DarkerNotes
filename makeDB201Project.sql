@@ -6,7 +6,7 @@ CREATE TABLE Users (
     userID INT(11) PRIMARY KEY AUTO_INCREMENT,
     fullName VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    hashPass VARCHAR(50) NOT NULL
+    hashPass VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE Files (
@@ -17,7 +17,7 @@ CREATE TABLE Files (
 );
 
 CREATE TABLE Access (
-	userID INT(11) NOT NULL,
+    userID INT(11) NOT NULL,
     fileID INT(11) NOT NULL,
     accessID INT(11) NOT NULL PRIMARY KEY,
     foreign key fk1(userID) REFERENCES Users(userID),
