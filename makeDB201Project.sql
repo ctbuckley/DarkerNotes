@@ -23,3 +23,12 @@ CREATE TABLE Access (
     foreign key fk1(userID) REFERENCES Users(userID),
     foreign key fk2(fileID) REFERENCES Files(fileID)
 );
+
+CREATE TABLE Notifications (
+    notificationID INT(11) NOT NULL PRIMARY KEY,
+    userID INT(11) NOT NULL,
+    fromName VARCHAR(50) NOT NULL,
+    isRead INT(1) NOT NULL,
+    dateT DateTime NOT NULL,
+    foreign key fk3(userID) REFERENCES Users(userID)
+);
