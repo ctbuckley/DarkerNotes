@@ -3,4 +3,14 @@
   background-color: lightblue;
 }
 
+/* line 4, /Users/LaurenceFong/Desktop/Fall2018/csci201Project3/sass/signIn.scss */
+.row {
+  border: 1px solid black;
+}
+
+/* line 7, /Users/LaurenceFong/Desktop/Fall2018/csci201Project3/sass/signIn.scss */
+.container-fluid {
+  border: 1px solid black;
+}
+
 /*# sourceMappingURL=../css/signIn.map */

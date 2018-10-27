@@ -5,8 +5,8 @@
 		"../sass/signIn.scss"
 	],
 	"sourcesContent": [
-		"#menu {\n    background-color: lightblue;\n}\n"
+		"#menu {\n    background-color: lightblue;\n}\n.row {\n    border: 1px solid black;\n}\n.container-fluid {\n    border: 1px solid black;\n}\n"
 	],
-	"mappings": ";AAAA,AAAA,KAAK,CAAC;EACF,gBAAgB,EAAE,SAAU;CAC/B",
+	"mappings": ";AAAA,AAAA,KAAK,CAAC;EACF,gBAAgB,EAAE,SAAU;CAC/B;;;AACD,AAAA,IAAI,CAAC;EACD,MAAM,EAAE,eAAgB;CAC3B;;;AACD,AAAA,gBAAgB,CAAC;EACb,MAAM,EAAE,eAAgB;CAC3B",
 	"names": []
 }
