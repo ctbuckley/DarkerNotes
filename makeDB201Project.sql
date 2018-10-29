@@ -32,3 +32,5 @@ CREATE TABLE Notifications (
     dateT DateTime NOT NULL,
     foreign key fk3(userID) REFERENCES Users(userID)
 );
+
+SELECT * FROM Users;
