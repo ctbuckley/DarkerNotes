@@ -55,11 +55,7 @@
 	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar" aria-expanded="false">
 	                <div class="list-group border-0 card text-center text-md-left">
 	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Filenames</span> </a>
-<<<<<<< HEAD
 
-=======
-	                
->>>>>>> a1ad1c91e03cea1d2ca6c4be2502f3b4869d9e4f
 	                <div id="sidebar-files">
 						<!-- Content goes here -->
 					</div>
@@ -162,7 +158,7 @@
 				//do stuff on log in
 				//display sidebar
 				var emailIn = document.getElementById("emailIn").value;
-<<<<<<< HEAD
+
                 $.ajax({
                    type: "POST",
                    url: "GetFiles",
@@ -176,7 +172,7 @@
                           $("#sidebar-files").append(result);
                    }
                })
-=======
+
 				$.ajax({
                 	type: "POST",
                 	url: "GetFiles",
@@ -190,7 +186,7 @@
                			$("#sidebar-files").append(result);
                 	}
                 })
->>>>>>> a1ad1c91e03cea1d2ca6c4be2502f3b4869d9e4f
+
 				//change sign in button to show name and change onclick attribute to call a sign out function
 				//display share button
 			}
