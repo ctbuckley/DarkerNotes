@@ -51,7 +51,7 @@
 		<div class="row d-flex d-md-block flex-nowrap wrapper">
 	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar" aria-expanded="false">
 	                <div class="list-group border-0 card text-center text-md-left">
-	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Untitled File</span> </a>
+	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Filenames</span> </a>
 	                
 	                <div id="sidebar-files">
 						<!-- Content goes here -->
@@ -149,9 +149,23 @@
 			}
 			
 			function onLogIn() {
-				console.log("In in on log in")
+				console.log("In on log in")
 				//do stuff on log in
 				//display sidebar
+				var emailIn = document.getElementById("emailIn").value;
+				$.ajax({
+                	type: "POST",
+                	url: "GetFiles",
+                	async: true,
+                	data: {
+						email: emailIn
+                	},
+                	success: function(result) {
+               			console.log(result)
+               			document.getElementById("sidebar-files").innerHTML = "";
+               			$("#sidebar-files").append(result);
+                	}
+                })
 				//change sign in button to show name and change onclick attribute to call a sign out function
 				//display share button
 			}
