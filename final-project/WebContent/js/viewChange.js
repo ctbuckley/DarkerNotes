@@ -1,5 +1,12 @@
-
+var showing = false;
 $("button").click(function() {
-    $("#text-area").css("margin-right", "0");
+    if (showing) {
+        $("#text-area").css("margin-right", "20%");
+        showing = false;
+    }
+    else {
+        $("#text-area").css("margin-right", "0");
+        showing = true;
+    }
     console.log("Changed CSS!");
 });
