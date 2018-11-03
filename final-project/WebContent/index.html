@@ -6,7 +6,7 @@
 		<!-- <link rel="stylesheet" href="css/style.css"> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-		
+
 		<!-- CDNs -->
 		<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,12 +14,15 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/gh/quirkey/sammy/lib/min/sammy-latest.min.js"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-		
+
 		<!-- Our Scripts and CSS -->
 		<script src="./js/app.js"></script>
 		<script src="./js/sidebar.js"></script>
+
 		<link rel="stylesheet" href="./css/styles.css">
 		<link rel="stylesheet" href="./css/sidebar.css">
+		<link rel="stylesheet" href="./css/textbox.css" />
+
 
 	</head>
 	<body>
@@ -36,7 +39,7 @@
 				<button role="button" class="btn btn-dark" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false">
 					<i id="preview-button" class="far fa-eye fa-inverse fa-2x"></i>
 				</button>
-				
+
 			</div>
 			<div class="mx-auto">
 				<h1>google_dark</h1>
@@ -45,22 +48,27 @@
 				<button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
 			</form>
 		</nav>
-		
-		
+
+
 		<!-- Sidebar -->
 		<div class="row d-flex d-md-block flex-nowrap wrapper">
 	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar" aria-expanded="false">
 	                <div class="list-group border-0 card text-center text-md-left">
-	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Untitled File</span> </a>
-	                
+	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Filenames</span> </a>
+
 	                <div id="sidebar-files">
 						<!-- Content goes here -->
 					</div>
 	            </div>
 	        </div>
+			<!-- Main Window -->
+			<main id="content" class="content container-fluid pr-0 mt-0 mx-auto">
+				<!-- editable HTML text area -->
+				<div id="text-area" contenteditable></div>
+			</main>
         </div>
-		
-        
+
+
         <!-- Preview Window -->
 		<div class="col-lg-6 mx-auto">
 			<!-- <button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button> -->
@@ -71,15 +79,12 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		<!-- Main Window -->
-		<main id="content" class="content container-fluid mt-5 mx-auto">
-			<!-- editable HTML text area -->
-			<div id="text-area" contenteditable></div>
-		</main>	
 
-		
+
+		<!-- Main Window -->
+
+
+
 		<!-- SignIn Modal -->
 		<div class="modal fade dark" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
@@ -111,17 +116,17 @@
 				</div>
 			</form>
 		</div>
-		
-		
-		
-		
-		
+
+
+
+
+
 		<script>
-		
+
 			function validateLogin() {
 				var emailIn = document.getElementById("emailIn").value;
 				var passIn = document.getElementById("passIn").value;
-				
+
 				//Go to servlet to validateLogin()
 				$.ajax({
 	                	type: "POST",
@@ -136,7 +141,7 @@
 	                		if (result.success == "true") {
 	                			//document.getElementById("errorMsg").innerHTML = "";
 	                			//Do session storage for name and email
-	                			
+
 	                			onLogIn();
 	                		}
 	                		else {
@@ -145,24 +150,38 @@
 	                		}
 	                	}
 	                })
-				
+
 			}
-			
+
 			function onLogIn() {
-				console.log("In in on log in")
+				console.log("In on log in")
 				//do stuff on log in
 				//display sidebar
+				var emailIn = document.getElementById("emailIn").value;
+                $.ajax({
+                   type: "POST",
+                   url: "GetFiles",
+                   async: true,
+                   data: {
+                        email: emailIn
+                   },
+                   success: function(result) {
+                          console.log(result)
+                          document.getElementById("sidebar-files").innerHTML = "";
+                          $("#sidebar-files").append(result);
+                   }
+               })
 				//change sign in button to show name and change onclick attribute to call a sign out function
 				//display share button
 			}
-			
+
 			function addUser() {
 				var emailIn = document.getElementById("emailIn").value;
 				var passIn = document.getElementById("passIn").value;
 				var nameIn = document.getElementById("nameIn").value;
-				
+
 				console.log('data', emailIn, passIn, nameIn);
-				
+
 				$.ajax({
                 	type: "POST",
                 	url: "AddUser",
@@ -180,11 +199,12 @@
                 		else {
                 			//Update error message html to display error message
                 			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-                			
+
                 		}
                 	}
                 })
 			}
 		</script>
+		<script src="./js/viewChange.js"></script>
 	</body>
 </html>

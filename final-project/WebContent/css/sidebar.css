@@ -9,7 +9,7 @@
 #sidebar .list-group {
     min-width: 400px;
     background-color: #333;
-    min-height: 100vh;
+    min-height: 86.5vh;
 }
 #sidebar i {
     margin-right: 6px;
@@ -74,9 +74,9 @@
 
 /* Smaller Screen sizes*/
 @media (max-width: 768px) {
-    /* Reversing the behavior of the sidebar: 
-       it'll be rotated vertically and off canvas by default, 
-       collapsing in on toggle button click with removal of 
+    /* Reversing the behavior of the sidebar:
+       it'll be rotated vertically and off canvas by default,
+       collapsing in on toggle button click with removal of
        the vertical rotation.   */
     #sidebar {
         margin-left: -250px;
@@ -87,9 +87,9 @@
         transform: none;
     }
 
-    /* Reversing the behavior of the bars: 
+    /* Reversing the behavior of the bars:
        Removing the rotation from the first,
-       last bars and reappear the second bar on default state, 
+       last bars and reappear the second bar on default state,
        and giving them a vertical margin */
     #sidebarCollapse span:first-of-type,
     #sidebarCollapse span:nth-of-type(2),
@@ -115,7 +115,7 @@
 }
 
 
-/* sidebar animations */ 
+/* sidebar animations */
 
 .collapse.show {
   visibility: visible;
