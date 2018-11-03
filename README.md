@@ -1,5 +1,5 @@
-# Csci201Project3 - Tentative name: google_dark
-This repository contains all the pertinent information on our CSCI 201L Project. Our team is composed of: Alexander Gednov, 
+# Darker Notes
+This repository contains all the pertinent information on our Markdown and LaTeX Note Editor. Our team is composed of: Alexander Gednov, 
 Connor Buckley, Hriday Panchasara, Laurence Fong, and Tong Wu. See the appropriate documents for details on the different 
 parts of our project.
 
