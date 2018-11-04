@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AddUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in AddUser");
-		
 		
 		//From previous page, extract parameters
 		String email = request.getParameter("email");
@@ -78,7 +76,7 @@ public class AddUser extends HttpServlet {
 				success = false;
 				Class.forName("com.mysql.jdbc.Driver");
 				//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?user=root&password=password&useSSL=false");
-				conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
 				
 				//Check if email already exists in our database
 				ps = conn.prepareStatement("SELECT * FROM Users WHERE email=?");

@@ -77,7 +77,7 @@ public class ValidateLogin extends HttpServlet {
 			try {
 				success = false;
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?user=root&password=password&useSSL=false");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?user=root&password=password&useSSL=false&allowPublicKeyRetrieval=true");
 				
 				//Validate email and password with server
 				ps = conn.prepareStatement("SELECT * FROM Users WHERE email=?");
