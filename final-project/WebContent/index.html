@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>GoogleDark</title>
+		<title>Darker Notes</title>
 		<!-- <link rel="stylesheet" href="css/style.css"> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
@@ -19,8 +19,7 @@
 		<script type="text/javascript" src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
-		    onload="renderMathInElement(document.body);"></script>
+		<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 	    
 	    <!-- Highlightjs for syntax highlighting (code blocks) -->
 	    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
@@ -28,10 +27,7 @@
 			//hljs.initHighlightingOnLoad();
 		</script>
 		
-		<!-- Our Scripts and CSS -->
-		<script src="./js/app.js"></script>
-		<script src="./js/sidebar.js"></script>
-
+		<!-- Our CSS -->
 		<link rel="stylesheet" href="./css/styles.css">
 		<link rel="stylesheet" href="./css/sidebar.css">
 		<link rel="stylesheet" href="./css/textbox.css" />
@@ -55,7 +51,7 @@
 
 			</div>
 			<div class="mx-auto">
-				<h1>google_dark</h1>
+				<h1>Darker Notes</h1>
 			</div>
 			<form class="ml-auto form-inline">
 				<button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
@@ -75,10 +71,12 @@
 	            </div>
 	        </div>
 			<!-- Main Window -->
-			<main id="content" class="content container-fluid pr-0 mt-0 mx-auto">
-				<!-- editable HTML text area -->
+<!-- 			<main id="content" class="content container-fluid pr-0 mt-0 mx-auto">
+				editable HTML text area
 				<div id="text-area" contenteditable></div>
-			</main>
+			</main> -->
+			
+			
         </div>
 		
 		
@@ -91,8 +89,7 @@
 				<!-- <button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button> -->
 				<div id="preview-shade" class="height collapse hide" aria-expanded="false">
 					<div>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						<em>write some text so we can render it!</em>
 					</div>
 				</div>
 			</div>
@@ -100,11 +97,7 @@
 		
 			<!-- editable HTML text area -->
 			<div id="text-area" contentEditable="true" style="border: 1px solid grey;">
-				# Markdown test #
-			
-				**bold** *italic* 
 				
-				$$ T(n) = T(\frac{n}{2}) + \Theta $$
 			</div>
 		</main>	
 
@@ -141,133 +134,12 @@
 				</div>
 			</form>
 		</div>
-		
-		
-		<div id="rendered"></div>
-		
-		
-		<script>
-			var converter = new showdown.Converter();
-			converter.setOption('simplifiedAutoLink', true);
-			converter.setOption('tables', true);
-			var convert = function() {
-				//var html = converter.makeHtml($('#text-area').val())
-				var html = converter.makeHtml(document.getElementById('text-area').innerText)
-				$('#preview-shade').html(html);
-				console.log(html)
-				// render math in the preview-shade with KaTeX 
-				renderMathInElement(document.getElementById('preview-shade'));
-			};
-			$('#preview-button').click(function() {
-					convert()
-					console.log('render markdown + LaTeX in preview-shade')
-			});
-			
-		</script>
-		
-		
-		
-		
-		<script>
-
-			function validateLogin() {
-				var emailIn = document.getElementById("emailIn").value;
-				var passIn = document.getElementById("passIn").value;
-
-				//Go to servlet to validateLogin()
-				$.ajax({
-	                	type: "POST",
-	                	url: "ValidateLogin",
-	                	async: true,
-	                	data: {
-							email: emailIn,
-							pass: passIn
-	                	},
-	                	success: function(result) {
-	                		console.log("Result.success = " + result.success)
-	                		if (result.success == "true") {
-	                			//document.getElementById("errorMsg").innerHTML = "";
-	                			//Do session storage for name and email
-
-	                			onLogIn();
-	                		}
-	                		else {
-	                			console.log("Failed to sign in")
-	                			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-	                		}
-	                	}
-	                })
-
-			}
-
-			function onLogIn() {
-				console.log("In on log in")
-				//do stuff on log in
-				//display sidebar
-				var emailIn = document.getElementById("emailIn").value;
-
-                $.ajax({
-                   type: "POST",
-                   url: "GetFiles",
-                   async: true,
-                   data: {
-                        email: emailIn
-                   },
-                   success: function(result) {
-                          console.log(result)
-                          document.getElementById("sidebar-files").innerHTML = "";
-                          $("#sidebar-files").append(result);
-                   }
-               })
-
-				$.ajax({
-                	type: "POST",
-                	url: "GetFiles",
-                	async: true,
-                	data: {
-						email: emailIn
-                	},
-                	success: function(result) {
-               			console.log(result)
-               			document.getElementById("sidebar-files").innerHTML = "";
-               			$("#sidebar-files").append(result);
-                	}
-                })
-
-				//change sign in button to show name and change onclick attribute to call a sign out function
-				//display share button
-			}
-
-			function addUser() {
-				var emailIn = document.getElementById("emailIn").value;
-				var passIn = document.getElementById("passIn").value;
-				var nameIn = document.getElementById("nameIn").value;
-
-				console.log('data', emailIn, passIn, nameIn);
-
-				$.ajax({
-                	type: "POST",
-                	url: "AddUser",
-                	async: true,
-                	data: {
-						email: emailIn,
-						pass: passIn,
-						name: nameIn
-                	},
-                	success: function(result) {
-                		if (result.success == "true") {
-                			console.log("Success")
-                			onLogIn();
-                		}
-                		else {
-                			//Update error message html to display error message
-                			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-
-                		}
-                	}
-                })
-			}
-		</script>
+				
+		<!-- Our scripts -->
+		<script src="./js/app.js"></script>
+		<script src="./js/sidebar.js"></script>
+		<script src="./js/render.js"></script>	
+		<script src="./js/login.js"></script>
 		<script src="./js/viewChange.js"></script>
 	</body>
 </html>
