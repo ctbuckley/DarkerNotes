@@ -40,3 +40,20 @@ reference: [https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html](
 Open `makeDB201Project.sql` in the root directory of the project.
 
 In MySQL Workbench, click the lightning button and it should create the database! You are then ready to run Tomcat and use the app.
+
+
+## Dependencies
+
+### Client-side 
+
+* [jQuery](https://code.jquery.com/)
+* [Showdown](http://showdownjs.com/), a Javascript markdown parser
+* [KaTeX](https://katex.org/), a fast LaTeX parser/renderer written in Javascript 
+	* View API [here](https://katex.org/docs/api.html) for usage 
+
+
+### Server-side
+
+* Java Servlets
+* JDBC
+* MySQL
