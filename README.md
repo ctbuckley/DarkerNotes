@@ -1,6 +1,6 @@
 # Darker Notes
-This repository contains all the pertinent information on our Markdown and LaTeX Note Editor. Our team is composed of: Alexander Gednov, 
-Connor Buckley, Hriday Panchasara, Laurence Fong, and Tong Wu. See the appropriate documents for details on the different 
+This repository contains all the pertinent information on our Markdown and LaTeX Note Editor. Our team is composed of: Alexander Gednov,
+Connor Buckley, Hriday Panchasara, Laurence Fong, and Tong Wu. See the appropriate documents for details on the different
 parts of our project.
 
 ## Instructions
@@ -13,7 +13,7 @@ parts of our project.
 1. Clone the repository in your eclipse workspace directory `git clone git@github.com:Laurenzarus/csci201Project3.git`
 2. Open Eclipse
 3. Go to `File -> Open Projects From File System...`
-4. Import soure from the directory you cloned, the folder called `final-project`
+4. Import source from the directory you cloned, the folder called `final-project`
 5. Click Finish
 6. success!
 
@@ -44,12 +44,13 @@ In MySQL Workbench, click the lightning button and it should create the database
 
 ## Dependencies
 
-### Client-side 
+### Client-side
 
 * [jQuery](https://code.jquery.com/)
+* [Bootstrap](http://getbootstrap.com/)
 * [Showdown](http://showdownjs.com/), a Javascript markdown parser
-* [KaTeX](https://katex.org/), a fast LaTeX parser/renderer written in Javascript 
-	* View API [here](https://katex.org/docs/api.html) for usage 
+* [KaTeX](https://katex.org/), a fast LaTeX parser/renderer written in Javascript
+	* View API [here](https://katex.org/docs/api.html) for usage
 
 
 ### Server-side
