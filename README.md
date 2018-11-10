@@ -10,7 +10,7 @@ parts of our project.
 1. Open Terminal
 2. Change directory to your eclipse workspace
   1. Typically at `cd ~/eclipse-workspace`
-1. Clone the repository in your eclipse workspace directory `git clone git@github.com:Laurenzarus/csci201Project3.git`
+1. Clone the repository in your eclipse workspace directory `git clone git@github.com:Laurenzarus/DarkerNotes.git`
 2. Open Eclipse
 3. Go to `File -> Open Projects From File System...`
 4. Import source from the directory you cloned, the folder called `final-project`

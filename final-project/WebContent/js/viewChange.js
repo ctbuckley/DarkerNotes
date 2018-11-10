@@ -1,5 +1,5 @@
 var showing = false;
-$("button").click(function() {
+$("#sidebarCollapse").click(function() {
     if (showing) {
         $("#text-area").css("margin-right", "20%");
         showing = false;
