@@ -60,7 +60,10 @@
 				<h1>Darker Notes</h1>
 			</div>
 			<form class="ml-auto form-inline">
+				<!-- Sign in Button, at first displayed -->
 				<button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
+				<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
+				<button class="btn btn-outline-warning " type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
 			</form>
 		</nav>
 
@@ -107,7 +110,6 @@
 			</div>
 		</main>
 
-
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
@@ -126,6 +128,32 @@
 							KaTeX Syntax
 						</a>
 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Signout Modal -->
+		<div class="modal fade dark" id="signout-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content dark">
+					<div class="modal-header dark">
+						<h5 class="modal-title">Sign Out</h5>
+						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
+					</div>
+				  	<div class="modal-body text-center">
+						<div>
+							<i>Are you sure you would like to sign out?</i>
+						</div>
+						<button class="btn btn-dark" data-dismiss="modal">
+							No, keep me signed in
+						</button>
+						<button class="btn btn-dark">
+							Yes, sign me out
+						</button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

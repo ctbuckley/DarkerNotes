@@ -1,7 +1,7 @@
 /*
  *	Functions for logging in or signing up
  *	interacts with Servlets
- *	
+ *
  */
 
 function validateLogin() {
@@ -22,7 +22,11 @@ function validateLogin() {
         		if (result.success == "true") {
         			//document.getElementById("errorMsg").innerHTML = "";
         			//Do session storage for name and email
-
+					sessionStorage.setItem("name", result.data.name);
+					console.log(sessionStorage.getItem("name"));
+					sessionStorage.setItem("email", result.data.email);
+					console.log(sessionStorage.getItem("email"));
+					sessionStorage.setItem("signedin", true);
         			onLogIn();
         		}
         		else {
@@ -52,21 +56,7 @@ function onLogIn() {
               document.getElementById("sidebar-files").innerHTML = "";
               $("#sidebar-files").append(result);
        }
-   })
-
-	$.ajax({
-    	type: "POST",
-    	url: "GetFiles",
-    	async: true,
-    	data: {
-			email: emailIn
-    	},
-    	success: function(result) {
-   			console.log(result)
-   			document.getElementById("sidebar-files").innerHTML = "";
-   			$("#sidebar-files").append(result);
-    	}
-    })
+   });
 
 	//change sign in button to show name and change onclick attribute to call a sign out function
 	//display share button
