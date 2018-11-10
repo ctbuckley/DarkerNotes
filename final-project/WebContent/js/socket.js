@@ -19,11 +19,19 @@ $('#text-area').keyup(function(){
 //user is "finished typing," do something
 function doneTyping () {
     //do something
-	socket.send("message");
+	socket.send("TestMessageSentFrom Socket.js");
 	
+	//CHECK IF USER IS SIGNED IN, OTHERWISE DO NOT SAVE ANYTHING
+	
+	//How Do we want to handle the case where a user is making a new file???
+	//How do we want to handle the case where a user has not specified a filename
 	
 }
 
 $(document).ready(function () {
 	socket = new WebSocket("ws://localhost:8080/final-project/ws");
+	
+	
+	
+	
 });
