@@ -6,7 +6,7 @@
 
 //setup before functions
 var typingTimer;                //timer identifier
-var doneTypingInterval = 5000;  //time in ms (5 seconds)
+var doneTypingInterval = 2000;  //time in ms (2 seconds)
 var socket;
 
 //on keyup, start the countdown
@@ -20,14 +20,43 @@ $('#text-area').keyup(function(){
 //user is "finished typing," do something
 function doneTyping () {
     //Get Current FileID
-	var currFileID = sessionStorage.getItem("currentFileId");
+	var currFileID = sessionStorage.getItem("currentFileID");
 	//Get rawData
 	var rawFileData = document.getElementById("text-area").innerHTML;
-	
-	console.log(sessionStorage.getItem("signedin"))
+	//Get email
+	var emailIn = sessionStorage.getItem("email");
+	//Get Filename
+	var currFileName = sessionStorage.getItem("fileName");
 	
 	if (sessionStorage.getItem("signedin") == "true") {
 		console.log("sending a message to server now")
+		
+		$.ajax({
+    	type: "POST",
+    	url: "autoSave",
+    	async: true,
+    	data: {
+			email: emailIn,
+			fileID: currFileID,
+			fileName: currFileName,
+			fileContent: rawFileData 
+    	}
+		/*
+    	success: function(result) {
+    		if (result.success == "true") {
+    			console.log("Success")
+    			
+    		}
+    		else {
+    			//Update error message html to display error message
+    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
+
+    		}
+    	}
+    	*/
+    })
+		
+		
 		
 		socket.send(JSON.stringify({
 			action: "Save",
@@ -43,9 +72,15 @@ function doneTyping () {
 
 //Setting up the WebSocket connection for client side
 $(document).ready(function () {
-	socket = new WebSocket("ws://localhost:8080/final-project/ws");
+	socket = new WebSocket("ws://localhost:8080/darker-notes/ws");
+	
 	sessionStorage.setItem("signedin", false);
+	
 	sessionStorage.setItem("currentFileID", -1);
+	//sessionStorage.setItem("currentFileID", "1");
+	sessionStorage.setItem("fileName", "Default File");
+	//sessionStorage.setItem("fileName", "TestFileConnor");
+	
 	socket.onopen = function(event) {
 		console.log("Connected in socket.js")
 	}

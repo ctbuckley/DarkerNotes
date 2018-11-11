@@ -26,7 +26,7 @@ public class autoSave extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 		
 		//make a new thread and run it
-		saveThread SA = new saveThread(email, fileID, fileContent);
+		saveThread SA = new saveThread(email, fileID, fileContent, fileName);
 		SA.start();
 	}
 }

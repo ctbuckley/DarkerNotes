@@ -11,10 +11,11 @@ public class saveThread extends Thread {
 	String fileContent;
 	String fileName;
 	
-	public saveThread(String email, String fileID, String fileContent) {
+	public saveThread(String email, String fileID, String fileContent, String fileName) {
 		this.email = email;
 		this.fileID = fileID;
 		this.fileContent = fileContent;
+		this.fileName = fileName;
 	}
 	
 	public void run() {
@@ -34,26 +35,29 @@ public class saveThread extends Thread {
 			ps = conn.prepareStatement("SELECT * FROM Access WHERE fileID=?");
 			ps.setString(1, fileID);
 			
+			synchronized(this) {
+				rs = ps.executeQuery();
+			}
 			
-			rs = ps.executeQuery();
 			
 			
 			if (rs.next()) {
 				//This file already exists
 				//connect email and currentFileID and update the row for that file with textBoxContent
 				//UPDATE `db`.`Files` SET `rawData` = 'This is a test!' WHERE (`fileID` = '1');
-				ps2 = conn.prepareStatement("UPDATE `db`.`Files` SET `rawData` = ? WHERE (`fileID` = ?);");
+				ps2 = conn.prepareStatement("UPDATE Files SET rawData=? WHERE (fileID = ?);");
 				ps2.setString(1, fileContent);
 				ps2.setString(2, fileID);
 				
-				
-				ps2.executeUpdate();
+				synchronized(this) {
+					ps2.executeUpdate();
+				}
 				
 			}
 			else {
 				//add a new file
-				
 				//ADD HRIDAY's CODE HERE
+				
 			}
 			
 		} catch(SQLException sqle) {
