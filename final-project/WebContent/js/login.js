@@ -23,10 +23,12 @@ function validateLogin() {
         			//document.getElementById("errorMsg").innerHTML = "";
         			//Do session storage for name and email
 					sessionStorage.setItem("name", result.data.name);
-					console.log(sessionStorage.getItem("name"));
+					console.log("Stored name: " + sessionStorage.getItem("name"));
 					sessionStorage.setItem("email", result.data.email);
-					console.log(sessionStorage.getItem("email"));
+					console.log("Stored email: " + sessionStorage.getItem("email"));
 					sessionStorage.setItem("signedin", true);
+
+
         			onLogIn();
         		}
         		else {
@@ -43,6 +45,11 @@ function onLogIn() {
 	//do stuff on log in
 	//display sidebar
 	var emailIn = document.getElementById("emailIn").value;
+
+	$("#signin-button").toggleClass("d-none");
+	$("#signout-button").toggleClass("d-none");
+	$("#share-button").toggleClass("d-none");
+
 
     $.ajax({
        type: "POST",

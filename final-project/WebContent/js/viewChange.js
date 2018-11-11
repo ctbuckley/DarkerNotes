@@ -5,7 +5,7 @@ $("#sidebarCollapse").click(function() {
         showing = false;
     }
     else {
-        $("#text-area").css("margin-right", "0");
+        $("#text-area").css("margin-right", "15%");
         showing = true;
     }
     console.log("Changed CSS!");
