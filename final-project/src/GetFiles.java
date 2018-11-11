@@ -65,6 +65,14 @@ public class GetFiles extends HttpServlet {
 			String statement3 = "SELECT * FROM Files WHERE fileID in ";
 			statement3 +="(";
 			int i = 0;
+			
+			
+			
+			//HANDLE IF NO FILES IN THE DATABASE!!!!!
+			
+			
+			
+			
 			if (fileID.size() > 1) {
 				while (i < fileID.size()) {
 					statement3+=fileID.get(i) + ",";
