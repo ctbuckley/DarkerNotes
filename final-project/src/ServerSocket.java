@@ -20,7 +20,6 @@ public class ServerSocket {
 	public void open(Session session) {
 		System.out.println("Connection made!");
 		
-		
 		sessionVector.add(session);
 		//Replace with map insert ^
 		

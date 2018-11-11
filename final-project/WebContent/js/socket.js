@@ -77,6 +77,7 @@ $(document).ready(function () {
 	sessionStorage.setItem("signedin", false);
 	
 	sessionStorage.setItem("currentFileID", -1);
+	
 	//sessionStorage.setItem("currentFileID", "1");
 	sessionStorage.setItem("fileName", "Default File");
 	//sessionStorage.setItem("fileName", "TestFileConnor");
