@@ -61,9 +61,11 @@
 			</div>
 			<form class="ml-auto form-inline">
 				<!-- Sign in Button, at first displayed -->
-				<button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
+				<button class="btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
+				<!-- Share Button, at first hidden. -->
+				<button class="btn btn-outline-warning d-none" id="share-button" type="button" data-toggle="modal" data-target="#share-modal">share</button>
 				<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
-				<button class="btn btn-outline-warning " type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
+				<button class="btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
 			</form>
 		</nav>
 
@@ -135,6 +137,32 @@
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<!-- Share Modal -->
+		<div class="modal fade dark" id="share-modal" tabindex="-1" role="dialog">
+			<form>
+				<div class="modal-dialog">
+					<div class="modal-content dark">
+						<div class="modal-header dark">
+							<h5 class="modal-title">Share</h5>
+						</div>
+					  	<div class="modal-body">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								    <span class="input-group-text" id="basic-addon1">Send to: </span>
+ 								 </div>
+								<input class="form-control" placeholder="example@example.com" type="email" id="shareEmail">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<!-- TODO the below line will need to call a function/servlet -->
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Share</button>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 
 		<!-- Signout Modal -->
