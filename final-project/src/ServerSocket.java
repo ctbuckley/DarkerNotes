@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +6,9 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.websocket.*; // for space
 import javax.websocket.server.ServerEndpoint;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @ServerEndpoint(value = "/ws")
 public class ServerSocket {
@@ -18,14 +20,24 @@ public class ServerSocket {
 	}
 	@OnMessage
 	public void onMessage(String message, Session session) {
-		
-		//called when the frontend requests a save
-		
+		//called when the frontend makes a request
 		System.out.println(message);
+		//message is a json w/ request, email, fileID, rawFileData
 		
-		// email of user ; currentFileID/Name ; content of text box
+		//Using GSON
+		JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
 		
-		//saveFileForUser("input", "input", "input");
+		System.out.println(jsonObject.get("request").getAsString());
+		System.out.println(jsonObject.get("email").getAsString()); 
+		System.out.println(jsonObject.get("fileID").getAsString()); 
+		System.out.println(jsonObject.get("rawData").getAsString()); 
+
+		String request = jsonObject.get("request").getAsString();
+		if (request.equals("Save")) {
+			//Call the multithreaded autosave for that user
+			System.out.println("Would call save File because request is to save");
+			//saveFileForUser("input", "input", "input");
+		}
 	}
 	@OnClose
 	public void close(Session session) {
@@ -71,8 +83,6 @@ public class ServerSocket {
 				System.out.println("sqle closing stream:-" + sqle.getMessage());
 			}
 		}	
-		
-		
 	}
 }
 	

@@ -19,10 +19,23 @@ $('#text-area').keyup(function(){
 
 //user is "finished typing," do something
 function doneTyping () {
-    //do something
-	socket.send("TestMessageSentFrom Socket.js");
+    //Get Current FileID
+	var currFileID = "1";
+	//Get rawData
+	var rawFileData = document.getElementById("text-area").innerHTML;
 	
-	//CHECK IF USER IS SIGNED IN, OTHERWISE DO NOT SAVE ANYTHING
+	console.log(sessionStorage.getItem("signedin"))
+	
+	if (sessionStorage.getItem("signedin") == "true") {
+		console.log("sending a message to server now")
+		
+		socket.send(JSON.stringify({
+			request: "Save",
+			email: sessionStorage.getItem("email"),
+			fileID: currFileID,
+			rawData: rawFileData
+		}));
+	}
 	
 	//How Do we want to handle the case where a user is making a new file???
 	//How do we want to handle the case where a user has not specified a filename
@@ -31,7 +44,7 @@ function doneTyping () {
 //Setting up the WebSocket connection for client side
 $(document).ready(function () {
 	socket = new WebSocket("ws://localhost:8080/final-project/ws");
-	
+	sessionStorage.setItem("signedin", false);
 	socket.onopen = function(event) {
 		console.log("Connected in socket.js")
 	}
