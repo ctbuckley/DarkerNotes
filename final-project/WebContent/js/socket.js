@@ -20,7 +20,7 @@ $('#text-area').keyup(function(){
 //user is "finished typing," do something
 function doneTyping () {
     //Get Current FileID
-	var currFileID = "1";
+	var currFileID = sessionStorage.getItem("currentFileId");
 	//Get rawData
 	var rawFileData = document.getElementById("text-area").innerHTML;
 	
@@ -30,7 +30,7 @@ function doneTyping () {
 		console.log("sending a message to server now")
 		
 		socket.send(JSON.stringify({
-			request: "Save",
+			action: "Save",
 			email: sessionStorage.getItem("email"),
 			fileID: currFileID,
 			rawData: rawFileData
@@ -45,11 +45,23 @@ function doneTyping () {
 $(document).ready(function () {
 	socket = new WebSocket("ws://localhost:8080/final-project/ws");
 	sessionStorage.setItem("signedin", false);
+	sessionStorage.setItem("currentFileID", -1);
 	socket.onopen = function(event) {
 		console.log("Connected in socket.js")
 	}
 	socket.onmessage = function(event) {
 		console.log("Message in socket.js" + event.data)
+		
+		//A message sent from server to client
+		
+		//If action == updateFileID {
+		//Server sent back a fileID for a new file
+		//sessionStorage.setItem("currentFileID", event.data);
+		//}
+		
+		//If action == notification {
+		// Display a new notification to the user
+		//}
 	}
 	socket.onclose = function(event) {
 		console.log("Disconnected in socket.js")

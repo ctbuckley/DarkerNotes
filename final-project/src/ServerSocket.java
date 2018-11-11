@@ -13,36 +13,52 @@ import com.google.gson.JsonParser;
 @ServerEndpoint(value = "/ws")
 public class ServerSocket {
 	private static Vector<Session> sessionVector = new Vector<Session>();
+	//Change ^ to Map: key is email -> value is session object
+	
+	
 	@OnOpen
 	public void open(Session session) {
 		System.out.println("Connection made!");
+		
+		
 		sessionVector.add(session);
+		//Replace with map insert ^
+		
 	}
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		//called when the frontend makes a request
 		System.out.println(message);
-		//message is a json w/ request, email, fileID, rawFileData
+		//message is a json w/ action, email, fileID, rawFileData
 		
 		//Using GSON
 		JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
 		
-		System.out.println(jsonObject.get("request").getAsString());
+		System.out.println(jsonObject.get("action").getAsString());
 		System.out.println(jsonObject.get("email").getAsString()); 
 		System.out.println(jsonObject.get("fileID").getAsString()); 
 		System.out.println(jsonObject.get("rawData").getAsString()); 
 
-		String request = jsonObject.get("request").getAsString();
-		if (request.equals("Save")) {
+		String action = jsonObject.get("action").getAsString();
+		
+		if (action.equals("Save")) {
 			//Call the multithreaded autosave for that user
 			System.out.println("Would call save File because request is to save");
+			
 			//saveFileForUser("input", "input", "input");
+			
 		}
 	}
 	@OnClose
 	public void close(Session session) {
+		
+		
 		System.out.println("Disconnecting!");
+		
+		
 		sessionVector.remove(session);
+		//^ Replace with map remove
+		
 	}
 	@OnError
 	public void error(Throwable error) {
