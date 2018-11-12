@@ -37,7 +37,7 @@ reference: [https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html](
 
 #### Setting up the Database
 
-Open `makeDB201Project.sql` in the root directory of the project.
+Open `makeDatabase.sql` in the root directory of the project.
 
 In MySQL Workbench, click the lightning button and it should create the database! You are then ready to run Tomcat and use the app.
 
