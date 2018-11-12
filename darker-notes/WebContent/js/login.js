@@ -73,7 +73,7 @@ function onLogIn() {
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
-
+	$("#sidebarCollapse").toggleClass("d-none");
 
     $.ajax({
        type: "POST",
