@@ -60,8 +60,8 @@
 			<div class="mx-auto">
 				<h1>Darker Notes</h1>
 			</div>
-			<div class="nav-item nav-link">
-				<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
+			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
+				<button id="notification-button" type="button" class="btn btn-dark d-none">
 					<i class="fas fa-bell fa-2x"></i>
 				</button>
 			</div>
@@ -207,15 +207,10 @@
 						</button>
 					</div>
 				  	<div class="modal-body text-center">
-						<div>
-							<i>Are you sure you would like to sign out?</i>
-						</div>
-						<button class="btn btn-warning" data-dismiss="modal">
-							No, keep me signed in
-						</button>
-						<button class="btn btn-danger" data-dismiss="modal" onclick="logout()">
-							Yes, sign me out
-						</button>
+						<div><i>Are you sure you would like to sign out?</i></div>
+						<br/>
+						<button class="btn btn-warning" data-dismiss="modal">No, keep me signed in</button>
+						<button class="btn btn-secondary" data-dismiss="modal" onclick="logout()">Yes, sign me out</button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>

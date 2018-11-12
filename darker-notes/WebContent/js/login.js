@@ -70,10 +70,12 @@ function onLogIn() {
 	//display sidebar
 	var emailIn = document.getElementById("emailIn").value;
 
+	// show/hide stuff
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
+	$("#notification-button").toggleClass("d-none");
 	
 	loadNotifications();
 
