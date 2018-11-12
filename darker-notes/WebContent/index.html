@@ -121,58 +121,27 @@
 					<div class="modal-header dark">
 						<h5 class="modal-title">Help for Darker Notes</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				  	<div class="modal-body text-center">
-				  	
 				  		<h2>Markdown Syntax</h2>
-				  		
 				  		<p>Markdown is simple and easy to use!</p>
 				  		<p>Check out these simple examples below.</p>
-				  		
 				  		<table class="table">
-				  			<thead>
-				  				<tr>
-				  					<th scope="col">input</th>
-				  					<th scope="col">output</th>
-				  				</tr>
+				  			<thead><tr><th scope="col">input</th><th scope="col">output</th></tr>
 				  			</thead>
 				  			<tbody>
-				  				<tr>
-				  					<th><code># h1</code></th>
-				  					<th><h1>h1</h1></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>## h2</code></th>
-				  					<th><h2>h2</h2></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>### h3</code></th>
-				  					<th><h3>h3</h3></th>
-			  					</tr>
-				  				<tr>
-				  					<th><code>**bold**</code></th>
-				  					<th><strong>bold</strong></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>*italics*</code></th>
-				  					<th><em>italics</em></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>***bold and italics***</code></th>
-				  					<th><em><strong>bold and italics</strong></em></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>`code`</code></th>
-				  					<th><em><code>code</code></em></th>
-			  					</tr>
-			  					<tr>
-				  					<th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th>
-				  					<th>
-				  						<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>
-				  					</th>
-			  					</tr>
+				  				<tr><th><code># h1</code></th><th><h1>h1</h1></th></tr>
+			  					<tr><th><code>## h2</code></th><th><h2>h2</h2></th></tr>
+			  					<tr><th><code>### h3</code></th><th><h3>h3</h3></th></tr>
+				  				<tr><th><code>**bold**</code></th><th><strong>bold</strong></th></tr>
+			  					<tr><th><code>*italics*</code></th><th><em>italics</em></th></tr>
+			  					<tr><th><code>***bold and italics***</code></th><th><em><strong>bold and italics</strong></em></th></tr>
+			  					<tr><th><code>`code`</code></th><th><em><code>code</code></em></th></tr>
+			  					<tr><th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th><th><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></th></tr>
 				  			</tbody>
-				  			
 				  		</table>
 				  	
 				  		<h2>Resources</h2>
@@ -184,7 +153,6 @@
 						<a href="https://katex.org/docs/supported.html" target="_blank">
 							KaTeX Syntax
 						</a>
-
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -199,20 +167,23 @@
 				<div class="modal-dialog">
 					<div class="modal-content dark">
 						<div class="modal-header dark">
-							<h5 class="modal-title">Share</h5>
+							<h5 class="modal-title">share</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
 					  	<div class="modal-body">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-								    <span class="input-group-text" id="basic-addon1">Send to: </span>
+								    <span class="input-group-text" id="basic-addon1">send to: </span>
  								 </div>
 								<input class="form-control" placeholder="example@example.com" type="email" id="shareEmail">
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 							<!-- TODO the below line will need to call a function/servlet -->
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Share</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">share</button>
 						</div>
 					</div>
 				</div>
@@ -226,15 +197,18 @@
 					<div class="modal-header dark">
 						<h5 class="modal-title">sign out</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				  	<div class="modal-body text-center">
 						<div>
 							<i>Are you sure you would like to sign out?</i>
 						</div>
-						<button class="btn btn-dark" data-dismiss="modal">
+						<button class="btn btn-warning" data-dismiss="modal">
 							No, keep me signed in
 						</button>
-						<button class="btn btn-dark" data-dismiss="modal">
+						<button class="btn btn-danger" data-dismiss="modal" onclick="logout()">
 							Yes, sign me out
 						</button>
 					</div>
@@ -318,5 +292,6 @@
 		<script src="./js/login.js"></script>
 		<script src="./js/viewChange.js"></script>
 		<script src="./js/socket.js"></script>
+		<script src="./js/logout.js"></script>
 	</body>
 </html>
