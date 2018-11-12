@@ -11,6 +11,10 @@ body {
 	/*border-bottom: 3px solid #333;*/
 }
 
+div {
+	outline: none; /* get rid of glow around text input divs */
+}
+
 
 /** Bootstrap Dark Modal Styles **/
 /*source: https://www.vandelaydesign.com/modal-bootstrap/*/
