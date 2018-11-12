@@ -32,42 +32,52 @@ function doneTyping () {
 		console.log("sending a message to server now")
 		
 		$.ajax({
-    	type: "POST",
-    	url: "autoSave",
-    	async: true,
-    	data: {
-			email: emailIn,
-			fileID: currFileID,
-			fileName: currFileName,
-			fileContent: rawFileData 
-    	}
-		/*
-    	success: function(result) {
-    		if (result.success == "true") {
-    			console.log("Success")
-    			
-    		}
-    		else {
-    			//Update error message html to display error message
-    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-
-    		}
-    	}
-    	*/
-    })
+	    	type: "POST",
+	    	url: "autoSave",
+	    	async: true,
+	    	data: {
+				email: emailIn,
+				fileID: currFileID,
+				fileName: currFileName,
+				fileContent: rawFileData 
+	    	}
+			/*
+	    	success: function(result) {
+	    		if (result.success == "true") {
+	    			console.log("Success")
+	    			
+	    		}
+	    		else {
+	    			//Update error message html to display error message
+	    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
+	
+	    		}
+	    	}
+	    	*/
+		})
 		
 		
 		
-		socket.send(JSON.stringify({
-			action: "Save",
-			email: sessionStorage.getItem("email"),
-			fileID: currFileID,
-			rawData: rawFileData
-		}));
+		
 	}
 	
 	//How Do we want to handle the case where a user is making a new file???
 	//How do we want to handle the case where a user has not specified a filename
+}
+
+function sendFile() {
+	
+	var emailToUser = document.getElementById("shareEmail").value;
+	var rawFileData = document.getElementById("text-area").innerHTML;
+	var currFileID = sessionStorage.getItem("currentFileID");
+	
+	socket.send(JSON.stringify({
+		action: "SendFile",
+		email: sessionStorage.getItem("email"),
+		emailTo: emailToUser,
+		fileID: currFileID,
+		rawData: rawFileData
+	}));
 }
 
 //Setting up the WebSocket connection for client side

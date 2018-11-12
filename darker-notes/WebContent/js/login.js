@@ -74,6 +74,8 @@ function onLogIn() {
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
+	
+	loadNotifications();
 
     $.ajax({
        type: "POST",
@@ -91,6 +93,23 @@ function onLogIn() {
 
 	//change sign in button to show name and change onclick attribute to call a sign out function
 	//display share button
+}
+
+function loadNotifications() {
+	var emailIn = sessionStorage.getItem("email");
+	$.ajax({
+	       type: "POST",
+	       url: "getNotifications",
+	       async: true,
+	       data: {
+	            email: emailIn
+	       },
+	       success: function(result) {
+	    	   //do anything if need be
+	    	   //put result into the notifications table html
+	    	   console.log(result)
+	       }
+	   });
 }
 
 
