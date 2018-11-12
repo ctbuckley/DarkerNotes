@@ -29,8 +29,9 @@ CREATE TABLE Notifications (
     userID INT(11) NOT NULL,
     fromName VARCHAR(50) NOT NULL,
     isRead INT(1) NOT NULL,
-    dateT DateTime NOT NULL,
-    foreign key fk3(userID) REFERENCES Users(userID)
+    fileID INT(11) NOT NULL,
+    foreign key fk3(userID) REFERENCES Users(userID),
+    foreign key fk4(fileID) REFERENCES Files(fileID)
 );
 
 SELECT * FROM Users;
