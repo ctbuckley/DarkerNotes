@@ -4,12 +4,11 @@
 	color: white;
 	overflow-y: scroll;
 	box-sizing: border-box;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 10px;
+	padding: 30px;
 	margin-right: 20%;
     margin-left: 20%;
 	/* height: 100%: */
+	border-radius: 5px;
 }
 ::-webkit-scrollbar {
     width: 0;
@@ -18,4 +17,11 @@
 ::-webkit-scrollbar-thumb {
 	background: black;
     opacity: 0;
+}
+
+/* title bar */
+#text-title {
+	background-color: #2C2C2C;
+	border-radius: 5px;
+	padding: 10px;
 }
