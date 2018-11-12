@@ -45,19 +45,25 @@
 	                <span></span>
 	            </button>
 			</div>
-			<div class="nav-item nav-link">
+			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Click here for help">
 				<button id="help-button" role="button" data-toggle="modal" data-target="#help-modal" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Help">
 					<i class="fas fa-question fa-2x"></i>
 				</button>
 			</div>
-			<div class="nav-item nav-link">
-				<button id="preview-button" role="button" class="btn btn-dark" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Toggle preview">
-					<i class="far fa-eye fa-inverse fa-2x"></i>
-				</button>
-
+			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Preview document">
+				<span id="preview-popover" class="d-inline-block" data-toggle="popover" data-placement="right" data-content="❌ write some text first!">
+					<button id="preview-button" role="button" class="btn btn-dark disabled" disabled="true" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false">
+						<i class="far fa-eye fa-inverse fa-2x"></i>
+					</button>
+				</span>
 			</div>
 			<div class="mx-auto">
 				<h1>Darker Notes</h1>
+			</div>
+			<div class="nav-item nav-link">
+				<button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
+					<i class="fas fa-bell fa-2x"></i>
+				</button>
 			</div>
 			<form class="form-inline">
 				<!-- Share Button, at first hidden. -->
@@ -82,19 +88,12 @@
 					</div>
 	            </div>
 	        </div>
-			<!-- Main Window -->
-<!-- 			<main id="content" class="content container-fluid pr-0 mt-0 mx-auto">
-				editable HTML text area
-				<div id="text-area" contenteditable></div>
-			</main> -->
-
-
         </div>
 
 
 
 		<!-- Main Window -->
-		<main id="content" class="content container-fluid mt-5 mx-auto">
+		<main id="content" class="content container-fluid mx-auto">
 
 			<!-- Preview Window -->
 			<div class="col-lg-6 mx-auto">
@@ -105,14 +104,20 @@
 					</div>
 				</div>
 			</div>
-			<div id="text-title" contenteditable="true" style="border: 1px solid gray; margin-left: 30%; margin-right: 30%;">
+			
+			<!-- Filename title -->
+			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">
 
 			</div>
 			<!-- editable HTML text area -->
-			<div id="text-area" contentEditable="true" style="border: 1px solid grey;">
+			<div id="text-area" contentEditable="true">
 
 			</div>
 		</main>
+		
+		
+		
+		
 
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">

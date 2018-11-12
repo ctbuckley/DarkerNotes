@@ -20,7 +20,29 @@ var convert = function() {
 		{left: "\\[", right: "\\]", display: true}
 	]);
 };
+
+
+
+/* Preview button code */
 $('#preview-button').click(function() {
 		convert()
 		console.log('render markdown + LaTeX in preview-shade')
+});
+
+//disable preview button if there is no text in input box
+$('#text-area').keyup(function() {
+	$('#preview-popover').popover('toggleEnabled') // toggle the popover
+    if($(this).text() != "") {
+    	// turn on button, disable popover
+    	$('#preview-popover').popover('hide') // hide the popover
+    	$('#preview-popover').popover('disable') // disable the popover
+    	$('#preview-button').removeClass('disabled');
+    	$('#preview-button').prop('disabled', false); 
+    }
+    else {
+    	// turn off button, enable popover
+    	$('#preview-popover').popover('enable') // enable the popover
+    	$('#preview-button').addClass('disabled');
+    	$('#preview-button').prop('disabled', true);
+    }
 });
