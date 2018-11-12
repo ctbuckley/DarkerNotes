@@ -45,27 +45,28 @@
 	                <span></span>
 	            </button>
 			</div>
-			<div class="mr-0 nav-item nav-link">
-				<button id="preview-button" role="button" class="btn btn-dark" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false">
+			<div class="nav-item nav-link">
+				<button id="help-button" role="button" data-toggle="modal" data-target="#help-modal" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Help">
+					<i class="fas fa-question fa-2x"></i>
+				</button>
+			</div>
+			<div class="nav-item nav-link">
+				<button id="preview-button" role="button" class="btn btn-dark" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Toggle preview">
 					<i class="far fa-eye fa-inverse fa-2x"></i>
 				</button>
 
 			</div>
-			<div class="nav-item nav-link">
-				<button id="help-button" role="button" data-toggle="modal" data-target="#help-modal" class="btn btn-dark">
-					<i class="fas fa-question"></i>
-				</button>
-			</div>
 			<div class="mx-auto">
 				<h1>Darker Notes</h1>
 			</div>
-			<form class="ml-auto form-inline">
-				<!-- Sign in Button, at first displayed -->
-				<button class="btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
+			<form class="form-inline">
 				<!-- Share Button, at first hidden. -->
-				<button class="btn btn-outline-warning d-none" id="share-button" type="button" data-toggle="modal" data-target="#share-modal">share</button>
+				<button class="mx-3 btn btn-outline-warning d-none" id="share-button" type="button" data-toggle="modal" data-target="#share-modal">share</button>
+				<!-- Sign in Button, at first displayed -->
+				<button class="mx-3 btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
 				<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
-				<button class="btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
+				<button class="mx-auto btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
+			
 			</form>
 		</nav>
 
@@ -115,13 +116,66 @@
 
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content dark">
 					<div class="modal-header dark">
 						<h5 class="modal-title">Help for Darker Notes</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
 					</div>
 				  	<div class="modal-body text-center">
+				  	
+				  		<h2>Markdown Syntax</h2>
+				  		
+				  		<p>Markdown is simple and easy to use!</p>
+				  		<p>Check out these simple examples below.</p>
+				  		
+				  		<table class="table">
+				  			<thead>
+				  				<tr>
+				  					<th scope="col">input</th>
+				  					<th scope="col">output</th>
+				  				</tr>
+				  			</thead>
+				  			<tbody>
+				  				<tr>
+				  					<th><code># h1</code></th>
+				  					<th><h1>h1</h1></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>## h2</code></th>
+				  					<th><h2>h2</h2></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>### h3</code></th>
+				  					<th><h3>h3</h3></th>
+			  					</tr>
+				  				<tr>
+				  					<th><code>**bold**</code></th>
+				  					<th><strong>bold</strong></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>*italics*</code></th>
+				  					<th><em>italics</em></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>***bold and italics***</code></th>
+				  					<th><em><strong>bold and italics</strong></em></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>`code`</code></th>
+				  					<th><em><code>code</code></em></th>
+			  					</tr>
+			  					<tr>
+				  					<th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th>
+				  					<th>
+				  						<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span>
+				  					</th>
+			  					</tr>
+				  			</tbody>
+				  			
+				  		</table>
+				  	
+				  		<h2>Resources</h2>
 
 						<a href="https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax" target="_blank">
 							Markdown Syntax
@@ -190,8 +244,10 @@
 				</div>
 			</div>
 		</div>
+		
+		
 		<!-- SignIn Modal -->
-		<div class="modal fade dark" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
+		<div id="signin-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
 				<div class="modal-dialog modal-dialog-centered dark" role="document">
 					<div class="modal-content dark">
@@ -208,17 +264,50 @@
 							<div class="input-group mb-3">
 								<input class="form-control" placeholder=" Password" type="text" onfocus="(this.type='password')" id="passIn">
 							</div>
-							<div class="input-group mb-3">
-								<input class="form-control" placeholder=" Add User: Username" type="text" id="nameIn">
-							</div>
-							<button type="button" class="btn btn-warning" onclick="addUser()">add user</button>
+							<div id="signin-error" class="text-danger"></div>
+							<p class="text-muted"><em>Don't have an account? Click "sign up" below!</em></p>
 						</div>
 						<div class="modal-footer">
+							<button type="button" class="mr-auto btn btn-dark" data-toggle="modal" data-target="#signup-modal" data-dismiss="modal">sign up</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 							<button type="button" class="btn btn-warning" onclick="validateLogin()">submit</button>
 						</div>
 					</div>
-				</div>
+				</div>	
+			</form>
+		</div>
+		
+		<!-- SignUp content -->
+		<div id="signup-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
+			<form>
+				<div class="modal-dialog modal-dialog-centered dark" role="document">
+					<div class="modal-content dark ">
+						<div class="modal-header dark">
+							<h5 class="modal-title" id="signupModalCenterTitle">sign up</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="input-group mb-3">
+								<input class="form-control" placeholder=" Email" type="email" id="emailIn-addUser">
+							</div>
+							<div class="input-group mb-3">
+								<input class="form-control" placeholder=" Password" type="text" onfocus="(this.type='password')" id="passIn-addUser">
+							</div>
+							<div class="input-group mb-3">
+								<input class="form-control" placeholder=" Username" type="text" id="nameIn-addUser">
+							</div>
+							<div id="signup-error" class="text-danger"></div>
+							<p class="text-muted"><em>Already have an account? Click "sign in" below!</em></p>		
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="mr-auto btn btn-dark" data-toggle="modal" data-target="#signin-modal" data-dismiss="modal">sign in</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+							<button type="button" class="btn btn-warning" onclick="addUser()">submit</button>
+						</div>
+					</div>
+				</div>	
 			</form>
 		</div>
 

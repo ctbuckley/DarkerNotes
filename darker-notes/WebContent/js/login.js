@@ -27,15 +27,39 @@ function validateLogin() {
 					sessionStorage.setItem("email", result.data.email);
 					console.log("Stored email: " + sessionStorage.getItem("email"));
 					sessionStorage.setItem("signedin", true);
-
+					
+					// close the modal window
+					$('#signin-modal').modal('hide');
 
         			onLogIn();
         		}
         		else {
-        			console.log("Failed to sign in")
+        			//var msg = "Sign in error. Please try again"
+        			console.log(result.data.errorMsg)
         			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
+        			$('#signin-error').html(result.data.errorMsg)
         		}
-        	}
+        	},
+            error: function (jqXHR, exception) {
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                console.log(msg)
+                $('#signin-error').html(msg);
+            },
         })
 
 }
@@ -69,10 +93,11 @@ function onLogIn() {
 	//display share button
 }
 
+
 function addUser() {
-	var emailIn = document.getElementById("emailIn").value;
-	var passIn = document.getElementById("passIn").value;
-	var nameIn = document.getElementById("nameIn").value;
+	var emailIn = document.getElementById("emailIn-addUser").value;
+	var passIn = document.getElementById("passIn-addUser").value;
+	var nameIn = document.getElementById("nameIn-addUser").value;
 
 	console.log('data', emailIn, passIn, nameIn);
 
@@ -86,15 +111,42 @@ function addUser() {
 			name: nameIn
     	},
     	success: function(result) {
+    		
     		if (result.success == "true") {
     			console.log("Success")
+    			
+    			// close the modal window
+    			$('#signup-modal').modal('hide');
+    			
     			onLogIn();
     		}
     		else {
     			//Update error message html to display error message
     			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-
+    			$('#signup-error').html(result.data.errorMsg);
     		}
-    	}
+    	},
+    	error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            $('#signin-error').html(msg);
+        },
+    })
+    .then(function(event) {
+    	console.log(event)
     })
 }
