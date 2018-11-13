@@ -40,7 +40,6 @@ public class AddFile extends HttpServlet {
 		//Begin database access
 		Connection conn = null;
 		PreparedStatement ps = null;
-		PreparedStatement ps2 = null;
 		ResultSet rs = null;
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

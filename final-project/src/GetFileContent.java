@@ -56,6 +56,7 @@ public class GetFileContent extends HttpServlet {
 				
 				if (rs.next()) {
 					data = rs.getString("rawData");
+					success=true;
 					
 				}
 				else {
