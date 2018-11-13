@@ -1,8 +1,6 @@
 function loadFile(fileID) {
 	
 	//var emailIn = document.getElementById("emailIn").value;
-	
-	console.log("Calling loadFile on file " + fileID)
 	$.ajax({
         	type: "POST",
         	url: "GetFileContent",
