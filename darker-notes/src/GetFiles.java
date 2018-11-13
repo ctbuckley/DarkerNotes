@@ -100,6 +100,12 @@ public class GetFiles extends HttpServlet {
 		         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\">"  + fileName.get((j)) +  "</td>");
 		         	rawHTML+=("</tr>");
 				}
+				rawHTML+=("<tr>");
+	         	rawHTML+=("<td onclick=\"addFile()\">Click to Open a New File</td>");
+	         	rawHTML+=("</tr>");
+	         	rawHTML+=("<tr>");
+	         	rawHTML+=("<td onclick=\"copyFile()\">Click to Make a Copy of Current File</td>");
+	         	rawHTML+=("</tr>");
 				rawHTML+=("</tbody></table>");
 				out.print(rawHTML);
 			}

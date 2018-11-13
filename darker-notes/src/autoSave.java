@@ -1,6 +1,13 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +25,9 @@ public class autoSave extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
 		//We have a new autoSave request from a client
 		//From previous page, extract parameters
 		String email = request.getParameter("email");
@@ -25,8 +35,20 @@ public class autoSave extends HttpServlet {
 		String fileContent = request.getParameter("fileContent");
 		String fileName = request.getParameter("fileName");
 		
-		//make a new thread and run it
-		saveThread SA = new saveThread(email, fileID, fileContent, fileName);
-		SA.start();
+		System.out.println("CURR FILE ID: " + fileID);
+		
+		ExecutorService executor = Executors.newCachedThreadPool();
+		Callable<Integer> callable = new saveThread(email, fileID, fileContent, fileName);
+		Future<Integer> future = executor.submit(callable);
+		Integer NewFileId= -1;
+		try {
+			NewFileId = future.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		out.print(NewFileId);
+		
 	}
 }
