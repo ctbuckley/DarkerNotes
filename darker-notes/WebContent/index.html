@@ -57,8 +57,14 @@
 					</button>
 				</span>
 			</div>
+			<!-- Print button. Shows when preview is on, and hidden when off. Needs JS to open new tab/window -->
+			<div class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="bottom" id="print-button" title="Print document">
+				<button role="button" class="btn btn-dark" data-toggle="tootlip" data-placement="bottom" title="print">
+					<span style="font-size: 24px; font-weight: bolder;">Print</span>
+				</button>
+			</div>
 			<div class="mx-auto">
-				<h1>Darker Notes</h1>
+				<h1 id="title">Darker Notes</h1>
 			</div>
 			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
 				<button id="notification-button" type="button" class="btn btn-dark d-none">
@@ -72,7 +78,7 @@
 				<button class="mx-3 btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
 				<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
 				<button class="mx-auto btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
-			
+
 			</form>
 		</nav>
 
@@ -104,7 +110,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Filename title -->
 			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">
 
@@ -114,10 +120,10 @@
 
 			</div>
 		</main>
-		
-		
-		
-		
+
+
+
+
 
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">
@@ -148,7 +154,7 @@
 			  					<tr><th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th><th><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></th></tr>
 				  			</tbody>
 				  		</table>
-				  	
+
 				  		<h2>Resources</h2>
 
 						<a href="https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax" target="_blank">
@@ -218,8 +224,8 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- SignIn Modal -->
 		<div id="signin-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
@@ -247,10 +253,10 @@
 							<button type="button" class="btn btn-warning" onclick="validateLogin()">submit</button>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</form>
 		</div>
-		
+
 		<!-- SignUp content -->
 		<div id="signup-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
@@ -273,7 +279,7 @@
 								<input class="form-control" placeholder=" Username" type="text" id="nameIn-addUser">
 							</div>
 							<div id="signup-error" class="text-danger"></div>
-							<p class="text-muted"><em>Already have an account? Click "sign in" below!</em></p>		
+							<p class="text-muted"><em>Already have an account? Click "sign in" below!</em></p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="mr-auto btn btn-dark" data-toggle="modal" data-target="#signin-modal" data-dismiss="modal">sign in</button>
@@ -281,7 +287,7 @@
 							<button type="button" class="btn btn-warning" onclick="addUser()">submit</button>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</form>
 		</div>
 
@@ -291,6 +297,7 @@
 		<script src="./js/render.js"></script>
 		<script src="./js/login.js"></script>
 		<script src="./js/viewChange.js"></script>
+		<script src="./js/preview.js"></script>
 		<script src="./js/socket.js"></script>
 		<script src="./js/logout.js"></script>
 	</body>
