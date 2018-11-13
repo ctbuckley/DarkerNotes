@@ -91,3 +91,54 @@ function addUser() {
     	}
     })
 }
+
+function loadFile(fileID){
+	sessionStorage.setItem("currentFileID", fileID);
+	//var emailIn = document.getElementById("emailIn").value;
+	
+	$.ajax({
+    	type: "POST",
+    	url: "GetFileContent",
+    	async: true,
+    	data: {
+			file: fileID
+    	},
+    	success: function(result) {
+    		if (result.success == "true") {
+    			//replace what's in the editor with data returned from the servlet
+    			document.getElementById("text-area").innerHTML=result.data.rawData;
+    		}
+    		else {
+    			//Update error message html to display error message
+    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
+
+    		}
+    	}
+    })	
+}
+
+function addFile(fileName,rawData){
+	var emailIn = document.getElementById("emailIn").value;
+	
+	$.ajax({
+    	type: "POST",
+    	url: "AddFile",
+    	async: true,
+    	data: {
+			email: emailIn,
+			fileName: fileIn,
+			data: rawData
+    	},
+    	success: function(result) {
+    		if (result.success == "true") {
+    			console.log("Success")   			
+    		}
+    		else {
+    			//Update error message html to display error message
+    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
+
+    		}
+    	}
+    })
+	
+}
