@@ -17,5 +17,12 @@ $("#preview-button").click(function() {
     else {
 
     }
-    // console.log("inPreview val is " + inPreview);
+});
+
+function getPreview() {
+    window.print();
+}
+
+$("#print-button").click(function() {
+    getPreview();
 });
