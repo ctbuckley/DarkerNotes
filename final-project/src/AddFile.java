@@ -22,7 +22,7 @@ public class AddFile extends HttpServlet {
 		
 		//From previous page, extract parameters
 		String email = request.getParameter("email");
-		String fileName = request.getParameter("fileName");
+		String fileName = request.getParameter("file");
 		String rawData= request.getParameter("data");
 		
 		//don't know what to do with lastUpdate
@@ -48,31 +48,14 @@ public class AddFile extends HttpServlet {
 		//If we didn't have null input, go into main database access
 		if (success) {
 			try {
-				success = false;
+				//success = false;
 				Class.forName("com.mysql.jdbc.Driver");
 				//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?user=root&password=password&useSSL=false");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
 				
-				//Check if email already exists in our database
-				ps = conn.prepareStatement("INSERT INTO Files (rawData,fileName,lastUpdate) VALUES ('\" + rawData + \"', '\" +  email + \"', '\" + lastUpdate + \"');\"");
-				ps.setString(1,email);
-				rs = ps.executeQuery();
+				ps = conn.prepareStatement("INSERT INTO Files (rawData,fileName,lastUpdate) VALUES ('\" + rawData + \"', '\" +  fileName + \"', '\" + lastUpdate + \"');\"");
+				ps.executeUpdate();		
 				
-				if (rs.next()) {
-					//If a user with that email exists
-					success = false;
-					errorMsg = "A user with that email address already exists!";
-				}
-				else {
-					//Insert the new user 
-					
-					//(a user with that email doesn't exist and they have valid name, pass, and email)
-					success = true;
-					ps2 = conn.prepareStatement("INSERT INTO Files (rawData, fileName, lastUpdate) VALUES ('" + name + "', '" +  email + "', '" + hashPass + "');");
-					ps2.executeUpdate();					
-					dbName = name;
-					dbEmail = email;
-				}
 				//Set up a JSON return
 				String objectToReturn =
 						  "{\n"

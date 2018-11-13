@@ -126,7 +126,7 @@ function addFile(fileName,rawData){
     	async: true,
     	data: {
 			email: emailIn,
-			fileName: fileIn,
+			file: fileName,
 			data: rawData
     	},
     	success: function(result) {
