@@ -66,7 +66,13 @@
 			<div class="mx-auto">
 				<h1 id="title">Darker Notes</h1>
 			</div>
-			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
+			<!-- Delete button, hidden until logged in -->
+			<div class="nav-item nav-link d-none" data-toggle="modal" data-target="#delete-modal" id="delete-button" data-placement="bottom" title="Delete File">
+				<button type="button" class="btn btn-dark" style="font-size: 30px;">
+					<i class="fas fa-trash-alt"></i>
+				</button>
+			</div>
+			<div class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
 				<button id="notification-button" type="button" class="btn btn-dark d-none">
 					<i class="fas fa-bell fa-2x"></i>
 				</button>
@@ -199,6 +205,26 @@
 					</div>
 				</div>
 			</form>
+		</div>
+
+		<!-- Delete Modal -->
+		<div class="modal fade dark" id="delete-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content dark">
+					<div class="modal-header dark">
+						<h5 class="modal-title">Delete File</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				  	<div class="modal-body text-center">
+						<div><i>Are you sure you would like to delete this file? This change is irreversible.</i></div>
+						<br/>
+						<button class="btn btn-warning" data-dismiss="modal">No</button>
+						<button class="btn btn-secondary" data-dismiss="modal">Yes</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- Signout Modal -->

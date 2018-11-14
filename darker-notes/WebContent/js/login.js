@@ -27,7 +27,7 @@ function validateLogin() {
 					sessionStorage.setItem("email", result.data.email);
 					console.log("Stored email: " + sessionStorage.getItem("email"));
 					sessionStorage.setItem("signedin", true);
-					
+
 					// close the modal window
 					$('#signin-modal').modal('hide');
 
@@ -70,13 +70,15 @@ function onLogIn() {
 	//display sidebar
 	var emailIn = document.getElementById("emailIn").value;
 
-	// show/hide stuff
+	// show/hide stuff. Can optimize at later point using single class
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
-	
+	$("#delete-button").toggleClass("d-none");
+	$("#title").css("padding-right", "-=80");
+
 	loadNotifications();
 
     $.ajax({
@@ -132,13 +134,13 @@ function addUser() {
 			name: nameIn
     	},
     	success: function(result) {
-    		
+
     		if (result.success == "true") {
     			console.log("Success")
-    			
+
     			// close the modal window
     			$('#signup-modal').modal('hide');
-    			
+
     			onLogIn();
     		}
     		else {
