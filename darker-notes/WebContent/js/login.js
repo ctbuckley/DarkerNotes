@@ -27,7 +27,7 @@ function validateLogin() {
 					sessionStorage.setItem("email", result.data.email);
 					console.log("Stored email: " + sessionStorage.getItem("email"));
 					sessionStorage.setItem("signedin", true);
-					
+
 					// close the modal window
 					$('#signin-modal').modal('hide');
 
@@ -72,14 +72,17 @@ function onLogIn(email) {
 	
 	console.log("Getting Files for User: " + emailIn)
 
-	// show/hide stuff
+	// show/hide stuff. Can optimize at later point using single class
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
-	
-	console.log("Loading Notifications now")
+
+	$("#delete-button").toggleClass("d-none");
+	$("#title").css("padding-right", "-=80");
+
+  console.log("Loading Notifications now")
 	loadNotifications();
 	
 	console.log("Getting Files Now")

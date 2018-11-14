@@ -15,6 +15,9 @@ div {
 	outline: none; /* get rid of glow around text input divs */
 }
 
+#title {
+	padding-right: 80px;
+}
 
 /** Bootstrap Dark Modal Styles **/
 /*source: https://www.vandelaydesign.com/modal-bootstrap/*/
