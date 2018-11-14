@@ -78,6 +78,7 @@ public class saveThread implements Callable<Integer> {
 				//add a new file
 				//ADD HRIDAY's CODE HERE
 				//Begin database access
+				System.out.println("Adding a new file w/ name : " + fileName);
 				ps3 = conn.prepareStatement("INSERT INTO Files (rawData,fileName,lastUpdate) VALUES (?,?,?);", Statement.RETURN_GENERATED_KEYS);
 				ps3.setString(1, fileContent);
 				ps3.setString(2, fileName);

@@ -100,7 +100,7 @@ public class AddFile extends HttpServlet {
 				
 				out.print(objectToReturn);
 			} catch(SQLException sqle) {
-				System.out.println("sqle: " + sqle.getMessage());
+				System.out.println("sqle in ADDFILE.java: " + sqle.getMessage());
 			} catch(ClassNotFoundException cnfe) {
 				System.out.println("cnfe: " + cnfe.getMessage());
 			} finally {

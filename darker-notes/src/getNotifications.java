@@ -33,14 +33,23 @@ public class getNotifications extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		try {
+			
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
 			
 			//Check if email already exists in our database
+			
+	
+			
 			ps = conn.prepareStatement("SELECT * FROM Users WHERE email=?");
 			ps.setString(1, email);
 			rs = ps.executeQuery();
+			
 			rs.next();
+			
+			
+			
 			int uID = rs.getInt("userID");
 			
 			//now we have uID and email
@@ -56,23 +65,38 @@ public class getNotifications extends HttpServlet {
 			ArrayList<Integer> notificationID = new ArrayList<Integer>();
 			ArrayList<String> fromNames = new ArrayList<String>();
 			
+			
+			
+			
+			
 			while (rs2.next()) {
 				notificationID.add(rs2.getInt("fileID"));
 				fromNames.add(rs2.getString("fromName"));
 			}
 			
-			rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
-			for (int j = 0; j < notificationID.size(); j++) {
-        		//names
-	         	rawHTML+=("<tr>");
-	         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\">"  + "New File from " + fromNames.get(j) +  "</td>");
-	         	rawHTML+=("</tr>");
+			if (notificationID.size() != 0) {
+				rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
+				for (int j = 0; j < notificationID.size(); j++) {
+	        		//names
+		         	rawHTML+=("<tr>");
+		         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\">"  + "New File from " + fromNames.get(j) +  "</td>");
+		         	rawHTML+=("</tr>");
+				}
+				rawHTML+=("</tbody></table>");
 			}
-			rawHTML+=("</tbody></table>");
+			else {
+				rawHTML+="<table class=\"table table-bordered table-dark\"><tbody>";
+				rawHTML+=("<tr>");
+	         	rawHTML+=("<td>No New Files</td>");
+	         	rawHTML+=("</tr>");
+	         	rawHTML+=("</tbody></table>");
+			}
+			
+			
 			out.print(rawHTML);
 			
 		} catch(SQLException sqle) {
-			System.out.println("sqle: " + sqle.getMessage());
+			System.out.println("sqle IN GETNOTIFICATIONs: " + sqle.getMessage());
 		} catch(ClassNotFoundException cnfe) {
 			System.out.println("cnfe: " + cnfe.getMessage());
 		} finally {

@@ -36,10 +36,12 @@ function doneTyping () {
 	//Get Filename
 	var currFileName = "";
 	if (document.getElementById("text-title").innerHTML.length > 0) {
-		currFileName = document.getElementById("text-title").innerHTML;
+		currFileName = document.getElementById("text-title").innerText;
 	} else {
 		currFileName = "New File";
 	}
+	
+	console.log("File name: " + currFileName)
 	
 	if (sessionStorage.getItem("signedin") == "true") {
 		console.log("sending a message to server now")
@@ -56,10 +58,12 @@ function doneTyping () {
 	    	},
 	    	success: function(result) {
 	    		sessionStorage.setItem("currentFileID", result)
+	    		console.log("Returned from autoSave, updating sidebar")
 	    		updateSidebar();
 	    		
 	    	},
 	    	error: function(result) {
+	    		console.log("Error from autoSave, updating sidebar")
 	    		updateSidebar();
 	    	}
 		})

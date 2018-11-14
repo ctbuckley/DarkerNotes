@@ -36,8 +36,6 @@ public class GetFiles extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
 			
-			
-			
 			//Check if email already exists in our database
 			ps = conn.prepareStatement("SELECT * FROM Users WHERE email=?");
 			ps.setString(1, email);
@@ -50,7 +48,6 @@ public class GetFiles extends HttpServlet {
 			
 			//First, retrieve fileIDS for user from Access table
 			ps2 = conn.prepareStatement("SELECT * FROM Access WHERE userID=?");
-			
 			ps2.setString(1,  Integer.toString(uID));
 			rs2 = ps2.executeQuery();
 			
@@ -58,63 +55,68 @@ public class GetFiles extends HttpServlet {
 			ArrayList<Integer> fileID = new ArrayList<Integer>();
 			ArrayList<Integer> aFileID = new ArrayList<Integer>();
 			ArrayList<String> fileName = new ArrayList<String>();
+				
 			while (rs2.next()) {
 				fileID.add(rs2.getInt("fileID"));
 			}
+			 
+			
 			//Next, retrieve files from DB that match fileIDs
 			String statement3 = "SELECT * FROM Files WHERE fileID in ";
 			statement3 +="(";
 			int i = 0;
 			
-			
-			
 			//HANDLE IF NO FILES IN THE DATABASE!!!!!
-			
-			
-			
-			
-			if (fileID.size() > 1) {
-				while (i < fileID.size()) {
-					statement3+=fileID.get(i) + ",";
-					i++;
-				}
-			}
-			else {
-				statement3+=fileID.get(0) + ")";
-			}
-			if (fileID.size() > 0) {
-				if (fileID.size() > 1) {
-					statement3 +=  fileID.get(i-i) + ");";
-				}
-				ps3 = conn.prepareStatement(statement3);
-				rs3 = ps3.executeQuery();
-				while (rs3.next()) {
-					aFileID.add(rs3.getInt("fileID"));
-					fileName.add(rs3.getString("fileName"));
-				}
-				//<thead><tr><th scope=\"col\">Filename</th></tr></thead>
+			if (fileID.size() == 0) {
 				rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
-				for (int j = 0; j < fileName.size(); j++) {
-	        		//names
-		         	rawHTML+=("<tr>");
-		         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\">"  + fileName.get((j)) +  "</td>");
-		         	rawHTML+=("</tr>");
-				}
 				rawHTML+=("<tr>");
 	         	rawHTML+=("<td onclick=\"addFile()\">Click to Open a New File</td>");
-	         	rawHTML+=("</tr>");
-	         	rawHTML+=("<tr>");
-	         	rawHTML+=("<td onclick=\"copyFile()\">Click to Make a Copy of Current File</td>");
 	         	rawHTML+=("</tr>");
 				rawHTML+=("</tbody></table>");
 				out.print(rawHTML);
 			}
 			else {
-				//exit
-				out.print("Empty");
+				if (fileID.size() > 1) {
+					while (i < fileID.size()) {
+						statement3+=fileID.get(i) + ",";
+						i++;
+					}
+				}
+				else {
+					statement3+=fileID.get(0) + ")";
+				}
+				if (fileID.size() > 0) {
+					if (fileID.size() > 1) {
+						statement3 +=  fileID.get(i-i) + ");";
+					}
+					ps3 = conn.prepareStatement(statement3);
+					rs3 = ps3.executeQuery();
+					while (rs3.next()) {
+						aFileID.add(rs3.getInt("fileID"));
+						fileName.add(rs3.getString("fileName"));
+					}
+					//<thead><tr><th scope=\"col\">Filename</th></tr></thead>
+					rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
+					for (int j = 0; j < fileName.size(); j++) {
+		        		//names
+			         	rawHTML+=("<tr>");
+			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\">"  + fileName.get((j)) +  "</td>");
+			         	rawHTML+=("</tr>");
+					}
+					rawHTML+=("<tr>");
+		         	rawHTML+=("<td onclick=\"addFile()\">Click to Open a New File</td>");
+		         	rawHTML+=("</tr>");
+		         	rawHTML+=("<tr>");
+		         	rawHTML+=("<td onclick=\"copyFile()\">Click to Make a Copy of Current File</td>");
+		         	rawHTML+=("</tr>");
+					rawHTML+=("</tbody></table>");
+					out.print(rawHTML);
+				}
 			}
+			
+			
 		} catch(SQLException sqle) {
-			System.out.println("sqle: " + sqle.getMessage());
+			System.out.println("sqle IN GETFILES: " + sqle.getMessage());
 		} catch(ClassNotFoundException cnfe) {
 			System.out.println("cnfe: " + cnfe.getMessage());
 		} finally {

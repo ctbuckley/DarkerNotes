@@ -1,5 +1,4 @@
 function loadFile(fileID) {
-	
 	//var emailIn = document.getElementById("emailIn").value;
 	$.ajax({
         	type: "POST",
@@ -78,7 +77,7 @@ function copyFile() {
 	var emailIn = sessionStorage.getItem("email");
 	var fileName = "";
 	if (document.getElementById("text-title").innerHTML.length > 0) {
-		fileName = "Copy of " + document.getElementById("text-title").innerHTML;
+		fileName = "Copy of " + document.getElementById("text-title").innerText;
 	} else {
 		fileName = "New File";
 	}

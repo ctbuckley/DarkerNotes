@@ -31,7 +31,7 @@ function validateLogin() {
 					// close the modal window
 					$('#signin-modal').modal('hide');
 
-        			onLogIn();
+        			onLogIn(emailIn);
         		}
         		else {
         			//var msg = "Sign in error. Please try again"
@@ -64,11 +64,13 @@ function validateLogin() {
 
 }
 
-function onLogIn() {
+function onLogIn(email) {
 	console.log("In on log in")
 	//do stuff on log in
 	//display sidebar
-	var emailIn = document.getElementById("emailIn").value;
+	var emailIn = email;
+	
+	console.log("Getting Files for User: " + emailIn)
 
 	// show/hide stuff
 	$("#signin-button").toggleClass("d-none");
@@ -77,8 +79,10 @@ function onLogIn() {
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
 	
+	console.log("Loading Notifications now")
 	loadNotifications();
-
+	
+	console.log("Getting Files Now")
     $.ajax({
        type: "POST",
        url: "GetFiles",
@@ -99,6 +103,7 @@ function onLogIn() {
 
 function loadNotifications() {
 	var emailIn = sessionStorage.getItem("email");
+	
 	$.ajax({
 	       type: "POST",
 	       url: "getNotifications",
@@ -132,14 +137,14 @@ function addUser() {
 			name: nameIn
     	},
     	success: function(result) {
-    		
     		if (result.success == "true") {
-    			console.log("Success")
-    			
+    			console.log("Successfully Added User")
+    			sessionStorage.setItem("email", emailIn)
+    			sessionStorage.setItem("signedin", true)
     			// close the modal window
     			$('#signup-modal').modal('hide');
     			
-    			onLogIn();
+    			onLogIn(emailIn);
     		}
     		else {
     			//Update error message html to display error message

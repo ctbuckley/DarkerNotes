@@ -106,7 +106,7 @@ public class ServerSocket {
 					
 				}
 			} catch(SQLException sqle) {
-				System.out.println("sqle: " + sqle.getMessage());
+				System.out.println("sqle SERVERSOCKET.java: " + sqle.getMessage());
 			} catch(ClassNotFoundException cnfe) {
 				System.out.println("cnfe: " + cnfe.getMessage());
 			} finally {

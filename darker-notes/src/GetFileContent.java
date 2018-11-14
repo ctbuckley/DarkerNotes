@@ -19,7 +19,7 @@ public class GetFileContent extends HttpServlet {
 		//From previous page, extract parameters
 		String fileID = request.getParameter("file");
 		String data="";
-		String fileName = "";
+		String fileName ="";
 		
 		//Set up variables to store return value
 		boolean success = true;
@@ -61,6 +61,8 @@ public class GetFileContent extends HttpServlet {
 					errorMsg = "File does not exist!";
 				}
 				
+				System.out.println("Filename: " + fileName);
+				
 				//Set up a JSON return
 				String objectToReturn =
 						  "{\n"
@@ -71,6 +73,8 @@ public class GetFileContent extends HttpServlet {
 								+ "\"fileName\": \"" + fileName + "\"\n"
 							+ "}\n" 
 						+ "}";
+				
+				System.out.println(objectToReturn);
 				out.print(objectToReturn);
 				
 			} catch(SQLException sqle) {
