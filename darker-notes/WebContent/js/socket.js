@@ -6,6 +6,7 @@
 
 //setup before functions
 var typingTimer;                //timer identifier
+var typingTimer2;
 var doneTypingInterval = 2000;  //time in ms (2 seconds)
 var socket;
 
@@ -14,6 +15,13 @@ $('#text-area').keyup(function(){
     clearTimeout(typingTimer);
     if (document.getElementById("text-area").innerHTML.length > 0) {
         typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+});
+
+$('#text-title').keyup(function(){
+    clearTimeout(typingTimer2);
+    if (document.getElementById("text-title").innerHTML.length > 0) {
+        typingTimer2 = setTimeout(doneTyping, doneTypingInterval);
     }
 });
 
@@ -26,7 +34,14 @@ function doneTyping () {
 	//Get email
 	var emailIn = sessionStorage.getItem("email");
 	//Get Filename
-	var currFileName = sessionStorage.getItem("fileName");
+	var currFileName = "";
+	if (document.getElementById("text-title").innerHTML.length > 0) {
+		currFileName = document.getElementById("text-title").innerText;
+	} else {
+		currFileName = "New File";
+	}
+	
+	console.log("File name: " + currFileName)
 	
 	if (sessionStorage.getItem("signedin") == "true") {
 		console.log("sending a message to server now")
@@ -40,25 +55,18 @@ function doneTyping () {
 				fileID: currFileID,
 				fileName: currFileName,
 				fileContent: rawFileData 
-	    	}
-			/*
+	    	},
 	    	success: function(result) {
-	    		if (result.success == "true") {
-	    			console.log("Success")
-	    			
-	    		}
-	    		else {
-	    			//Update error message html to display error message
-	    			//document.getElementById("errorMsg").innerHTML = result.data.errorMsg;
-	
-	    		}
+	    		sessionStorage.setItem("currentFileID", result)
+	    		console.log("Returned from autoSave, updating sidebar")
+	    		updateSidebar();
+	    		
+	    	},
+	    	error: function(result) {
+	    		console.log("Error from autoSave, updating sidebar")
+	    		updateSidebar();
 	    	}
-	    	*/
 		})
-		
-		
-		
-		
 	}
 	
 	//How Do we want to handle the case where a user is making a new file???
@@ -89,7 +97,7 @@ $(document).ready(function () {
 	sessionStorage.setItem("currentFileID", -1);
 	
 	//sessionStorage.setItem("currentFileID", "1");
-	sessionStorage.setItem("fileName", "Default File");
+	sessionStorage.setItem("fileName", "New File");
 	//sessionStorage.setItem("fileName", "TestFileConnor");
 	
 	socket.onopen = function(event) {

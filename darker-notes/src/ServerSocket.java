@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.websocket.*; // for space
 import javax.websocket.server.ServerEndpoint;
@@ -13,23 +14,20 @@ import com.google.gson.JsonParser;
 @ServerEndpoint(value = "/ws")
 public class ServerSocket {
 	private static Vector<Session> sessionVector = new Vector<Session>();
+	private static HashMap<String, Vector<Session>> hm = new HashMap<String, Vector<Session>>();
 	//Change ^ to Map: key is email -> value is session object
-	
 	
 	@OnOpen
 	public void open(Session session) {
 		System.out.println("Connection made!");
-		
 		sessionVector.add(session);
-		//Replace with map insert ^
-		
 	}
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		//called when the frontend makes a request
 		System.out.println(message);
 		//message is a json w/ action, email, fileID, rawFileData
-		
+		//Here 
 		//Using GSON
 		JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
 		
@@ -40,9 +38,23 @@ public class ServerSocket {
 		System.out.println(jsonObject.get("rawData").getAsString()); 
 
 		String action = jsonObject.get("action").getAsString();
-		
-		if (action.equals("SendFile")) {
-			
+		if (action.equals("addUtoMap")) {
+			String email = jsonObject.get("email").getAsString();
+			if (hm.get(email) != null) {
+				hm.get(email).add(session);
+			}
+			else {
+				hm.put(email, new Vector<Session>());
+				hm.get(email).add(session);
+			}
+		}
+		else if (action.equals("removeUFromMap")) {
+			String email = jsonObject.get("email").getAsString();
+			if (hm.get(email) != null) {
+				hm.get(email).remove(session);
+			}
+		}
+		else if (action.equals("SendFile")) {
 			//add a new notification for the user
 			String emailTo = jsonObject.get("emailTo").getAsString();
 			String email = jsonObject.get("email").getAsString();
@@ -83,11 +95,18 @@ public class ServerSocket {
 					ps3.executeUpdate();
 					
 					//Notify other user here that they have a new file if they are logged in!
+					
+					//check that user is in sessionVector
 					//This is the "emailTo" user
+					//hm.get(emailto)
+					//for (session i : hm.get(emailto) {
+					//  check if the user is in the sessionVecotr {
+					//		send message for new notification
+					//}
 					
 				}
 			} catch(SQLException sqle) {
-				System.out.println("sqle: " + sqle.getMessage());
+				System.out.println("sqle SERVERSOCKET.java: " + sqle.getMessage());
 			} catch(ClassNotFoundException cnfe) {
 				System.out.println("cnfe: " + cnfe.getMessage());
 			} finally {
@@ -119,7 +138,6 @@ public class ServerSocket {
 	@OnClose
 	public void close(Session session) {
 		System.out.println("Disconnecting!");
-		sessionVector.remove(session);
 		//^ Replace with map remove
 		
 	}
