@@ -35,8 +35,6 @@ public class autoSave extends HttpServlet {
 		String fileContent = request.getParameter("fileContent");
 		String fileName = request.getParameter("fileName");
 		
-		System.out.println("CURR FILE ID: " + fileID);
-		
 		ExecutorService executor = Executors.newCachedThreadPool();
 		Callable<Integer> callable = new saveThread(email, fileID, fileContent, fileName);
 		Future<Integer> future = executor.submit(callable);
