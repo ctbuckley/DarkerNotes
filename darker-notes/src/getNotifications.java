@@ -74,8 +74,9 @@ public class getNotifications extends HttpServlet {
 				fromNames.add(rs2.getString("fromName"));
 			}
 			
+			rawHTML+=("<table class=\"table table-bordered\"><tbody>");
 			if (notificationID.size() != 0) {
-				rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
+				//rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
 				for (int j = 0; j < notificationID.size(); j++) {
 	        		//names
 		         	rawHTML+=("<tr>");
@@ -85,7 +86,7 @@ public class getNotifications extends HttpServlet {
 				rawHTML+=("</tbody></table>");
 			}
 			else {
-				rawHTML+="<table class=\"table table-bordered table-dark\"><tbody>";
+				//rawHTML+="<table class=\"table table-bordered table-dark\"><tbody>";
 				rawHTML+=("<tr>");
 	         	rawHTML+=("<td>No New Files</td>");
 	         	rawHTML+=("</tr>");

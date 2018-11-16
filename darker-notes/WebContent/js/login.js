@@ -78,7 +78,7 @@ function onLogIn(email) {
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");
-	$("#sidebarCollapse").toggleClass("d-none");
+	$("#sidebar-button-wrapper").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
 	$("#notification-button-wrapper").toggleClass("d-none");
 	//$("#delete-button").toggleClass("d-none");
@@ -119,6 +119,12 @@ function loadNotifications() {
 	    	   //do anything if need be
 	    	   //put result into the notifications table html
 	    	   console.log(result)
+	    	   $('#notification-content').html(result)
+	    	   $('#notification-button').popover({
+	    		   'title': 'Notifications',
+	    		   'html': true,
+	    		   'content': $('#notification-content').html()
+	    	   });
 	       }
 	   });
 }

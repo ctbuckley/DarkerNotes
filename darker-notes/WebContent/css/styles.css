@@ -26,11 +26,8 @@ div {
 }
 
 code {
+	font-family: "Cousine", monospace;
 	color: white
-}
-
-#title {
-	padding-right: 80px;
 }
 
 .error {
