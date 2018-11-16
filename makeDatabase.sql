@@ -12,8 +12,7 @@ CREATE TABLE Users (
 CREATE TABLE Files (
     fileID INT(11) PRIMARY KEY AUTO_INCREMENT,
     rawData Text(64000) NOT NULL,
-    fileName VARCHAR(50) NOT NULL,
-    lastUpdate DateTime NOT NULL
+    fileName VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Access (
