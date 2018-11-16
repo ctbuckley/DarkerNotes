@@ -5,7 +5,7 @@
 		<title>Darker Notes</title>
 		<!-- <link rel="stylesheet" href="css/style.css"> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Space+Mono" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Cousine" rel="stylesheet">
 
 		<!-- CDNs -->
 		<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -35,13 +35,14 @@
 		<link rel="stylesheet" href="./css/preview.css" />
 		<link rel="stylesheet" href="./css/printable.css" />
 		<link rel="stylesheet" href="./css/helpTable.css" />
+		<link rel="stylesheet" href="./css/popover.css" />
 
 	</head>
 	<body>
 		<!-- Navbar -->
 		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="nav-item nav-link">
-				<button type="button" id="sidebarCollapse" class="btn btn-dark navbar-btn collapsed d-none" data-toggle="collapse" data-target="#sidebar" aria-expanded="true">
+			<div id="sidebar-button-wrapper" class="nav-item nav-link d-none">
+				<button type="button" id="sidebarCollapse" class="btn btn-dark navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="true">
 	                <span></span>
 	                <span></span>
 	                <span></span>
@@ -75,10 +76,12 @@
 				</button>
 			</div>
 			<!-- Notification button -->
-			<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
-				<button id="notification-button" type="button" class="btn btn-dark d-none">
+			<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="left" title="">
+				<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
 					<i class="fas fa-bell fa-2x"></i>
 				</button>
+				<!-- Notification content -->
+				<div id="notification-content" class="d-none"></div>
 			</div>
 			<form class="form-inline">
 				<!-- Share Button, at first hidden. -->
@@ -128,9 +131,7 @@
 			</div>
 
 			<!-- Filename title -->
-			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">
-					New File
-			</div>
+			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">New File</div>
 			<!-- editable HTML text area -->
 			<div id="text-area" contentEditable="true"></div>
 		</main>

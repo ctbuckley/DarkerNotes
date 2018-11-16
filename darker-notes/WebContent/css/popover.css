@@ -1,0 +1,21 @@
+/* styling for popovers */
+.popover {
+	color: #333
+}
+
+/* the small triangle that points towards originating object */
+/* .popover .arrow::after {
+	border-bottom-color: transparent !important;
+}
+.popover .arrow::before {
+	border-bottom-color: transparent !important;
+}
+
+.popover-header {
+	background-color: #333;
+}
+
+.popover-body {
+	background-color: #333;
+} */
+
