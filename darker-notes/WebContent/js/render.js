@@ -30,9 +30,10 @@ $('#preview-button').click(function() {
 });
 
 //disable preview button if there is no text in input box
-$('#text-area').keyup(function() {
+$('#text-area').keyup(togglePreviewButton(this));
+function togglePreviewButton(element) {
 	$('#preview-popover').popover('toggleEnabled') // toggle the popover
-    if($(this).text() != "") {
+    if($(element).text() != "") {
     	// turn on button, disable popover
     	$('#preview-popover').popover('hide') // hide the popover
     	$('#preview-popover').popover('disable') // disable the popover
@@ -45,4 +46,4 @@ $('#text-area').keyup(function() {
     	$('#preview-button').addClass('disabled');
     	$('#preview-button').prop('disabled', true);
     }
-});
+}

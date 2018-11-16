@@ -17,4 +17,5 @@ function logout() {
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
+	$("#notification-button-wrapper").toggleClass("d-none");
 }

@@ -34,6 +34,7 @@
 		<link rel="stylesheet" href="./css/textbox.css" />
 		<link rel="stylesheet" href="./css/preview.css" />
 		<link rel="stylesheet" href="./css/printable.css" />
+		<link rel="stylesheet" href="./css/helpTable.css" />
 
 	</head>
 	<body>
@@ -67,13 +68,14 @@
 			<div class="mx-auto">
 				<h1 id="title">Darker Notes</h1>
 			</div>
-			<!-- Delete button, hidden until logged in -->
+			<!-- Delete button -->
 			<div class="nav-item nav-link d-none" data-toggle="modal" data-target="#delete-modal" id="delete-button" data-placement="bottom" title="Delete File">
-				<button type="button" class="btn btn-dark" style="font-size: 30px;">
-					<i class="fas fa-trash-alt"></i>
+				<button type="button" class="btn btn-dark">
+					<i class="fas fa-trash-alt fa-2x"></i>
 				</button>
 			</div>
-			<div class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
+			<!-- Notification button -->
+			<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="bottom" title="Under construction 😉">
 				<button id="notification-button" type="button" class="btn btn-dark d-none">
 					<i class="fas fa-bell fa-2x"></i>
 				</button>
@@ -91,12 +93,19 @@
 
 
 		<!-- Sidebar -->
-		<div class="row d-flex d-md-block flex-nowrap wrapper">
-	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar" aria-expanded="false">
-	                <div class="list-group border-0 card text-center text-md-left">
-	                <a class="list-group-item d-inline-block collapsed active" data-toggle="collapse" aria-expanded="true"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Filenames</span> </a>
-
-	                <div id="sidebar-files">
+		<div class="row d-flex d-md-block flex-nowrap wrapper" style="margin-left: 0;">
+	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width rounded shadow active" id="sidebar" aria-expanded="false">
+                <div class="list-group border-0 card text-center text-md-left">
+                	<div class="list-group-item d-inline-block border-0" data-toggle="collapse" aria-expanded="true">
+                		<h4 class="d-none d-md-inline" style="margin-top: -1px;">Files</h4>
+                	</div>
+                	<div class="list-group-item collapsed border-0">
+                		<div class="d-flex justify-content-between">
+	                		<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file"></i>New File</button>
+	                		<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy"></i>Copy File</button>
+               			</div>
+               		</div>
+	                <div id="sidebar-files" style="display: block; overflow-y: auto;">
 						<!-- Content goes here -->
 					</div>
 	            </div>
@@ -109,9 +118,9 @@
 		<main id="content" class="content container-fluid mx-auto">
 
 			<!-- Preview Window -->
-			<div class="col-lg-6 mx-auto">
+			<div class="container-fluid">
 				<!-- <button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button> -->
-				<div id="preview-shade" class="height collapse hide" aria-expanded="false">
+				<div id="preview-shade" class="shadow rounded height collapse hide" aria-expanded="false">
 					<div>
 						<em>write some text so we can render it!</em>
 					</div>
@@ -135,42 +144,38 @@
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
-				<div class="modal-content dark">
+				<div class="modal-content dark shadow">
 					<div class="modal-header dark">
 						<h5 class="modal-title">Help for Darker Notes</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
+							<span class="text-light" aria-hidden="true">&times;</span>
 						</button>
 					</div>
 				  	<div class="modal-body text-center">
 				  		<h2>Markdown Syntax</h2>
-				  		<p>Markdown is simple and easy to use!</p>
-				  		<p>Check out these simple examples below.</p>
-				  		<table class="table">
-				  			<thead><tr><th scope="col">input</th><th scope="col">output</th></tr>
-				  			</thead>
-				  			<tbody>
-				  				<tr><th><code># h1</code></th><th><h1>h1</h1></th></tr>
-			  					<tr><th><code>## h2</code></th><th><h2>h2</h2></th></tr>
-			  					<tr><th><code>### h3</code></th><th><h3>h3</h3></th></tr>
-				  				<tr><th><code>**bold**</code></th><th><strong>bold</strong></th></tr>
-			  					<tr><th><code>*italics*</code></th><th><em>italics</em></th></tr>
-			  					<tr><th><code>***bold and italics***</code></th><th><em><strong>bold and italics</strong></em></th></tr>
-			  					<tr><th><code>`code`</code></th><th><em><code>code</code></em></th></tr>
-			  					<tr><th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th><th><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></th></tr>
-				  			</tbody>
-				  		</table>
-
+				  		<p>Markdown is simple and easy to use! Check out these simple examples below.</p>
+				  		<div class="table-wrapper-scroll-y">
+				  			<table class="table table-dark table-hover">
+					  			<thead class="bg-dark"><tr><th scope="col"><strong>input</strong></th><th scope="col"><strong>output</strong></th></tr>
+					  			</thead>
+					  			<tbody>
+					  				<tr><th><code># h1</code></th><th><h1>h1</h1></th></tr>
+				  					<tr><th><code>## h2</code></th><th><h2>h2</h2></th></tr>
+				  					<tr><th><code>### h3</code></th><th><h3>h3</h3></th></tr>
+					  				<tr><th><code>**bold**</code></th><th><strong>bold</strong></th></tr>
+				  					<tr><th><code>*italics*</code></th><th><em>italics</em></th></tr>
+				  					<tr><th><code>***bold and italics***</code></th><th><em><strong>bold and italics</strong></em></th></tr>
+				  					<tr><th><code>`code`</code></th><th><em><code>code</code></em></th></tr>
+				  					<tr><th><code>$$T(n) = 2T(n/2) + n \Rightarrow O(nlogn)$$</code></th><th><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>n</mi><mo>⇒</mo><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n) = 2T(n/2) + n \Rightarrow O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right: 0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right: 0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span></th></tr>
+					  			</tbody>
+					  		</table>
+				  		</div>
 				  		<h2>Resources</h2>
 
-						<a href="https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax" target="_blank">
-							Markdown Syntax
-						</a>
+						<a href="https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax" target="_blank">Markdown Syntax</a>
 						<br />
-						<a href="https://katex.org/docs/supported.html" target="_blank">
-							KaTeX Syntax
-						</a>
+						<a href="https://katex.org/docs/supported.html" target="_blank">KaTeX Syntax</a>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -183,11 +188,11 @@
 		<div class="modal fade dark" id="share-modal" tabindex="-1" role="dialog">
 			<form>
 				<div class="modal-dialog">
-					<div class="modal-content dark">
+					<div class="modal-content dark shadow">
 						<div class="modal-header dark">
 							<h5 class="modal-title">share</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<span class="text-light" aria-hidden="true">&times;</span>
 							</button>
 						</div>
 					  	<div class="modal-body">
@@ -211,11 +216,11 @@
 		<!-- Delete Modal -->
 		<div class="modal fade dark" id="delete-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
-				<div class="modal-content dark">
+				<div class="modal-content dark shadow">
 					<div class="modal-header dark">
 						<h5 class="modal-title">Delete File</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
+							<span class="text-light" aria-hidden="true">&times;</span>
 						</button>
 					</div>
 				  	<div class="modal-body text-center">
@@ -231,12 +236,12 @@
 		<!-- Signout Modal -->
 		<div class="modal fade dark" id="signout-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
-				<div class="modal-content dark">
+				<div class="modal-content dark shadow">
 					<div class="modal-header dark">
 						<h5 class="modal-title">sign out</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
+							<span class="text-light" aria-hidden="true">&times;</span>
 						</button>
 					</div>
 				  	<div class="modal-body text-center">
@@ -257,11 +262,11 @@
 		<div id="signin-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
 				<div class="modal-dialog modal-dialog-centered dark" role="document">
-					<div class="modal-content dark">
+					<div class="modal-content dark shadow">
 						<div class="modal-header dark">
 							<h5 class="modal-title" id="signinModalCenterTitle">sign in</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<span class="text-light" aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
@@ -271,7 +276,7 @@
 							<div class="input-group mb-3">
 								<input class="form-control" placeholder=" Password" type="text" onfocus="(this.type='password')" id="passIn">
 							</div>
-							<div id="signin-error" class="text-danger"></div>
+							<div id="signin-error" class="error text-center text-danger bg-light"></div>
 							<p class="text-muted"><em>Don't have an account? Click "sign up" below!</em></p>
 						</div>
 						<div class="modal-footer">
@@ -288,11 +293,11 @@
 		<div id="signup-modal" class="modal fade dark" tabindex="-1" role="dialog" aria-labelledby="signinModalCenterTitle" aria-hidden="true">
 			<form>
 				<div class="modal-dialog modal-dialog-centered dark" role="document">
-					<div class="modal-content dark ">
+					<div class="modal-content dark shadow">
 						<div class="modal-header dark">
 							<h5 class="modal-title" id="signupModalCenterTitle">sign up</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<span class="text-light" aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
@@ -305,7 +310,7 @@
 							<div class="input-group mb-3">
 								<input class="form-control" placeholder=" Username" type="text" id="nameIn-addUser">
 							</div>
-							<div id="signup-error" class="text-danger"></div>
+							<div id="signup-error" class="error text-center text-danger bg-light"></div>
 							<p class="text-muted"><em>Already have an account? Click "sign in" below!</em></p>
 						</div>
 						<div class="modal-footer">

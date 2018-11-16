@@ -78,9 +78,9 @@ function onLogIn(email) {
 	$("#share-button").toggleClass("d-none");
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
-
-	$("#delete-button").toggleClass("d-none");
-	$("#title").css("padding-right", "-=80");
+	$("#notification-button-wrapper").toggleClass("d-none");
+	//$("#delete-button").toggleClass("d-none");
+	//$("#title").css("padding-right", "-=80");
 
   console.log("Loading Notifications now")
 	loadNotifications();
