@@ -154,8 +154,8 @@ function deleteFile() {
 	    		if (result.success == "true") {
 	    			//sessionStorage.setItem("currentFileID", fileID);
 	    			document.getElementById("text-area").innerHTML="";
-	    			document.getElementById("text-title").innerHTML=result.data.fileName;
-	    			sessionStorage.setItem("currentFileID", result.data.newFileId);
+	    			document.getElementById("text-title").innerHTML="New File";
+	    			sessionStorage.setItem("currentFileID", "-1");
 	    			updateSidebar();
 	    		}
 	    	}
