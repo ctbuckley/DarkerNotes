@@ -53,10 +53,9 @@ public class AddFile extends HttpServlet {
 				//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?user=root&password=password&useSSL=false");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost/db?user=root&password=password&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
 				
-				ps = conn.prepareStatement("INSERT INTO Files (rawData,fileName,lastUpdate) VALUES (?,?,?);", Statement.RETURN_GENERATED_KEYS);
+				ps = conn.prepareStatement("INSERT INTO Files (rawData,fileName) VALUES (?,?);", Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, rawData);
 				ps.setString(2, fileName);
-				ps.setString(3,  "2011-02-01 23:59:59");
 				ps.executeUpdate();
 				rs6 = ps.getGeneratedKeys();
 				
