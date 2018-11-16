@@ -84,7 +84,14 @@ function copyFile() {
 	} else {
 		fileName = "New File";
 	}
-	var rawData = document.getElementById("text-area").innerHTML;
+	
+	var rawData = "";
+	
+	if (sessionStorage.getItem("currentFileID") != "-1") {
+		rawData = document.getElementById("text-area").innerHTML;
+	}
+	
+	
 	
 	$.ajax({
     	type: "POST",
@@ -127,4 +134,32 @@ function updateSidebar() {
                $("#sidebar-files").append(result);
         }
     });
+}
+
+function deleteFile() {
+	var currFileID = sessionStorage.getItem("currentFileID");
+	var email = sessionStorage.getItem("email");
+	
+	if (currFileId != "-1") {
+		//delete currFileid for user email
+		$.ajax({
+	    	type: "POST",
+	    	url: "DeleteFile",
+	    	async: true,
+	    	data: {
+				email: emailIn,
+				fileId: currFileID
+	    	},
+	    	success: function(result) {
+	    		if (result.success == "true") {
+	    			//sessionStorage.setItem("currentFileID", fileID);
+	    			document.getElementById("text-area").innerHTML="";
+	    			document.getElementById("text-title").innerHTML=result.data.fileName;
+	    			sessionStorage.setItem("currentFileID", result.data.newFileId);
+	    			updateSidebar();
+	    		}
+	    	}
+	    })
+		
+	}
 }

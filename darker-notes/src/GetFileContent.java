@@ -63,6 +63,8 @@ public class GetFileContent extends HttpServlet {
 				
 				
 				
+				System.out.println("Data: " + data);
+				
 				//Set up a JSON return
 				String objectToReturn =
 						  "{\n"

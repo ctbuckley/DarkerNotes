@@ -25,22 +25,14 @@ public class ServerSocket {
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		//called when the frontend makes a request
-		System.out.println(message);
 		//message is a json w/ action, email, fileID, rawFileData
 		//Here 
 		//Using GSON
 		JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
-		
-		System.out.println(jsonObject.get("action").getAsString());
-		System.out.println(jsonObject.get("email").getAsString()); 
-		System.out.println(jsonObject.get("emailTo").getAsString()); 
-		System.out.println(jsonObject.get("fileID").getAsString()); 
-		System.out.println(jsonObject.get("rawData").getAsString()); 
 
 		String action = jsonObject.get("action").getAsString();
 		if (action.equals("addUtoMap")) {
 			String email = jsonObject.get("email").getAsString();
-			System.out.println("Adding a new user to map!");
 			if (hm.get(email) != null) {
 				hm.get(email).add(session);
 			}
@@ -51,7 +43,6 @@ public class ServerSocket {
 		}
 		else if (action.equals("removeUFromMap")) {
 			String email = jsonObject.get("email").getAsString();
-			System.out.println("Logging someone out of map!");
 			if (hm.get(email) != null) {
 				hm.get(email).remove(session);
 			}
@@ -96,20 +87,18 @@ public class ServerSocket {
 					ps3.setString(4, fileID);
 					ps3.executeUpdate();
 					
-					//Notify other user here that they have a new file if they are logged in!
+					//Notify other user of new file if they are logged in
 					
-					//check that user is in sessionVector
-					//This is the "emailTo" user
-					//hm.get(emailto)
-					//for (session i : hm.get(emailto) {
-					//  check if the user is in the sessionVecotr {
-					//		send message for new notification
+					//check if they are logged in?
+					// check if the session is in sessionVector<>
 					
 					if  (hm.get(emailTo) != null) {
 						Vector<Session> sendToThese = hm.get(emailTo);
 						for (Session s : sendToThese) {
 							try {
-								s.getBasicRemote().sendText("You have a new notification");
+								if (sessionVector.contains(s)) {
+									s.getBasicRemote().sendText("You have a new notification");
+								}
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -150,6 +139,8 @@ public class ServerSocket {
 	@OnClose
 	public void close(Session session) {
 		System.out.println("Disconnecting!");
+		sessionVector.remove(session);
+		
 		//^ Replace with map remove
 		
 	}
