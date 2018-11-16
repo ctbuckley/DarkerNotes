@@ -20,4 +20,7 @@ function logout() {
 	$("#sidebarCollapse").toggleClass("d-none");
 	$("#notification-button").toggleClass("d-none");
 	$("#notification-button-wrapper").toggleClass("d-none");
+	
+	// refresh the webpage
+	location.reload();
 }

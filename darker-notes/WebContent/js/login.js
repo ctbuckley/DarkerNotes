@@ -96,7 +96,6 @@ function onLogIn(email) {
             email: emailIn
        },
        success: function(result) {
-              console.log(result)
               document.getElementById("sidebar-files").innerHTML = "";
               $("#sidebar-files").append(result);
        }

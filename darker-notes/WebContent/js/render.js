@@ -25,15 +25,16 @@ var convert = function() {
 
 /* Preview button code */
 $('#preview-button').click(function() {
-		convert()
+		convert()	
 		console.log('render markdown + LaTeX in preview-shade')
 });
 
 //disable preview button if there is no text in input box
-$('#text-area').keyup(togglePreviewButton(this));
+$('#text-area').keyup(function() { togglePreviewButton($('#text-area')) } );
+
 function togglePreviewButton(element) {
 	$('#preview-popover').popover('toggleEnabled') // toggle the popover
-    if($(element).text() != "") {
+    if(element.text().length != 0) {
     	// turn on button, disable popover
     	$('#preview-popover').popover('hide') // hide the popover
     	$('#preview-popover').popover('disable') // disable the popover
