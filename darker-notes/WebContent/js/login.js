@@ -71,6 +71,8 @@ function onLogIn(email) {
 	var emailIn = email;
 	
 	console.log("Getting Files for User: " + emailIn)
+	
+	logIntoMap();
 
 	// show/hide stuff. Can optimize at later point using single class
 	$("#signin-button").toggleClass("d-none");

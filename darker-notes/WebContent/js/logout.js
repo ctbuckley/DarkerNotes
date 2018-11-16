@@ -5,6 +5,8 @@
 function logout() {
 	console.log("logging out " + sessionStorage.getItem("name"))
 	
+	logOutMap();
+	
 	// clear sessionStorage
 	sessionStorage.clear();
 	sessionStorage.setItem("currentFileID", -1);
