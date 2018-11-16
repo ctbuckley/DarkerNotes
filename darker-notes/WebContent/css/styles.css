@@ -3,8 +3,18 @@
 /** General webpage formatting **/
 body {
 	color:  white;
-	font-family: "Space Mono", monospace;
+	font-family: "Fira Sans", sans-serif;
 	background: rgb(52, 58, 64); /* Bootstrap bg-dark color */
+}
+
+a {
+	color: #68f;
+}
+
+a:hover {
+	color: #68f;
+	text-decoration: none;
+	border-bottom: 2px solid #68f;
 }
 
 #navbar {
@@ -15,12 +25,24 @@ div {
 	outline: none; /* get rid of glow around text input divs */
 }
 
+code {
+	color: white
+}
+
 #title {
 	padding-right: 80px;
 }
 
+.error {
+	border-radius: 5px;
+	
+}
+
 /** Bootstrap Dark Modal Styles **/
 /*source: https://www.vandelaydesign.com/modal-bootstrap/*/
+.modal-content {
+	background: transparent;
+}
 .modal-open .modal, .btn:focus {
 		outline: none !important;
 }

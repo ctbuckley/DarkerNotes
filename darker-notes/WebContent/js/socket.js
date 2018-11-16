@@ -7,7 +7,7 @@
 //setup before functions
 var typingTimer;                //timer identifier
 var typingTimer2;
-var doneTypingInterval = 2000;  //time in ms (2 seconds)
+var doneTypingInterval = 500;  //time in ms (2 seconds)
 var socket;
 
 //on keyup, start the countdown

@@ -13,6 +13,9 @@ function loadFile(fileID) {
         			document.getElementById("text-area").innerHTML=result.data.rawData;
         			document.getElementById("text-title").innerHTML=result.data.fileName;
         			sessionStorage.setItem("currentFileID", fileID);
+        			
+        			// enable preview button if the file is not empty
+        			togglePreviewButton($('#text-area'));
         		}
         		else {
         			//Update error message html to display error message

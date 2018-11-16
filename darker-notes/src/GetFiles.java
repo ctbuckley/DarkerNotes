@@ -68,11 +68,8 @@ public class GetFiles extends HttpServlet {
 			
 			//HANDLE IF NO FILES IN THE DATABASE!!!!!
 			if (fileID.size() == 0) {
-				rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
-				rawHTML+=("<tr>");
-	         	rawHTML+=("<td onclick=\"addFile()\">Click to Open a New File</td>");
-	         	rawHTML+=("</tr>");
-				rawHTML+=("</tbody></table>");
+				rawHTML+=("<table class=\"table table-bordered table-dark table-hover\">");
+				rawHTML+=("<tbody></tbody></table>");
 				out.print(rawHTML);
 			}
 			else {
@@ -95,20 +92,16 @@ public class GetFiles extends HttpServlet {
 						aFileID.add(rs3.getInt("fileID"));
 						fileName.add(rs3.getString("fileName"));
 					}
-					//<thead><tr><th scope=\"col\">Filename</th></tr></thead>
-					rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
+					rawHTML+=("<table class=\"table table-bordered table-dark table-hover\">");
+		         	rawHTML+=("<tbody>");
+		         	
+		         	// populate files found in database
 					for (int j = 0; j < fileName.size(); j++) {
 		        		//names
 			         	rawHTML+=("<tr>");
 			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\">"  + fileName.get((j)) +  "</td>");
 			         	rawHTML+=("</tr>");
 					}
-					rawHTML+=("<tr>");
-		         	rawHTML+=("<td onclick=\"addFile()\">Click to Open a New File</td>");
-		         	rawHTML+=("</tr>");
-		         	rawHTML+=("<tr>");
-		         	rawHTML+=("<td onclick=\"copyFile()\">Click to Make a Copy of Current File</td>");
-		         	rawHTML+=("</tr>");
 					rawHTML+=("</tbody></table>");
 					out.print(rawHTML);
 				}

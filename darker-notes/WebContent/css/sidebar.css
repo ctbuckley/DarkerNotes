@@ -1,15 +1,26 @@
 /** Sidebar animation and styling **/
 
+#sidebar-files {
+	/* enable scrolling */
+	display: block;
+	overflow-y: auto;
+}
+
 /* sidebar styling */
 
 #sidebar {
     overflow: hidden;
     z-index: 3;
+    width: 30vw;
+    max-width: 300px;
 }
+
 #sidebar .list-group {
-    min-width: 400px;
-    background-color: #333;
-    min-height: 86.5vh;
+    /* min-width: 400px; */
+    /* background-color: #333; */
+    background-color: rgb(33, 37, 40); /* the color of dark tables in Bootstrap */
+    /* min-height: 86.5vh; */
+    height: 75vh;
 }
 #sidebar i {
     margin-right: 6px;
@@ -25,7 +36,8 @@
 }
 #sidebar .list-group-item.active {
     border-radius: 0;
-    background-color: rgb(52, 58, 64); /* Bootstrap bg-dark color */
+    background-color: #2C2C2C;
+    /* background-color: rgb(52, 58, 64); */ /* Bootstrap bg-dark color */
     color: #ccc;
     border-left: 0;
     border-right: 0;
