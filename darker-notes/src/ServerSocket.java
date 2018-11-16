@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,6 @@ import com.google.gson.JsonParser;
 public class ServerSocket {
 	private static Vector<Session> sessionVector = new Vector<Session>();
 	private static HashMap<String, Vector<Session>> hm = new HashMap<String, Vector<Session>>();
-	//Change ^ to Map: key is email -> value is session object
 	
 	@OnOpen
 	public void open(Session session) {
@@ -40,6 +40,7 @@ public class ServerSocket {
 		String action = jsonObject.get("action").getAsString();
 		if (action.equals("addUtoMap")) {
 			String email = jsonObject.get("email").getAsString();
+			System.out.println("Adding a new user to map!");
 			if (hm.get(email) != null) {
 				hm.get(email).add(session);
 			}
@@ -50,6 +51,7 @@ public class ServerSocket {
 		}
 		else if (action.equals("removeUFromMap")) {
 			String email = jsonObject.get("email").getAsString();
+			System.out.println("Logging someone out of map!");
 			if (hm.get(email) != null) {
 				hm.get(email).remove(session);
 			}
@@ -102,8 +104,18 @@ public class ServerSocket {
 					//for (session i : hm.get(emailto) {
 					//  check if the user is in the sessionVecotr {
 					//		send message for new notification
-					//}
 					
+					if  (hm.get(emailTo) != null) {
+						Vector<Session> sendToThese = hm.get(emailTo);
+						for (Session s : sendToThese) {
+							try {
+								s.getBasicRemote().sendText("You have a new notification");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
 				}
 			} catch(SQLException sqle) {
 				System.out.println("sqle SERVERSOCKET.java: " + sqle.getMessage());

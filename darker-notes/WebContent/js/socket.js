@@ -73,6 +73,26 @@ function doneTyping () {
 	//How do we want to handle the case where a user has not specified a filename
 }
 
+function logIntoMap() {
+	socket.send(JSON.stringify({
+		action: "addUtoMap",
+		email: sessionStorage.getItem("email"),
+		emailTo: "",
+		fileID: "",
+		rawData: ""
+	}));
+}
+
+function logOutMap() {
+	socket.send(JSON.stringify({
+		action: "removeUFromMap",
+		email: sessionStorage.getItem("email"),
+		emailTo: "",
+		fileID: "",
+		rawData: ""
+	}));
+}
+
 function sendFile() {
 	
 	var emailToUser = document.getElementById("shareEmail").value;
@@ -108,10 +128,7 @@ $(document).ready(function () {
 		
 		//A message sent from server to client
 		
-		//If action == updateFileID {
-		//Server sent back a fileID for a new file
-		//sessionStorage.setItem("currentFileID", event.data);
-		//}
+		//Display a new notification to the user with message "event.data"
 		
 		//If action == notification {
 		// Display a new notification to the user

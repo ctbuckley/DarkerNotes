@@ -61,7 +61,7 @@ public class GetFileContent extends HttpServlet {
 					errorMsg = "File does not exist!";
 				}
 				
-				System.out.println("Filename: " + fileName);
+				
 				
 				//Set up a JSON return
 				String objectToReturn =
@@ -74,7 +74,7 @@ public class GetFileContent extends HttpServlet {
 							+ "}\n" 
 						+ "}";
 				
-				System.out.println(objectToReturn);
+				
 				out.print(objectToReturn);
 				
 			} catch(SQLException sqle) {
