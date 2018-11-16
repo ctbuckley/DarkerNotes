@@ -55,17 +55,12 @@
 			</div>
 			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Preview document">
 				<span id="preview-popover" class="d-inline-block" data-toggle="popover" data-placement="right" data-content="❌ write some text first!">
-					<button id="preview-button" role="button" class="btn btn-dark disabled" disabled="true" data-toggle="collapse" data-target="#preview-shade" aria-expanded="false">
+					<button id="preview-button" role="button" class="btn btn-dark disabled" disabled="true" data-toggle="modal" data-target="#preview-modal" data-toggle="tooltip" data-placement="bottom" title="Preview">
 						<i class="far fa-eye fa-inverse fa-2x"></i>
 					</button>
 				</span>
 			</div>
-			<!-- Print button. Shows when preview is on, and hidden when off. Needs JS to open new tab/window -->
-			<div class="nav-item nav-link d-none" id="print-button">
-				<button role="button" class="btn btn-dark" data-toggle="tootlip" data-placement="bottom" title="print">
-					<span style="font-size: 24px; font-weight: bolder;">Print</span>
-				</button>
-			</div>
+			
 			<div class="mx-auto">
 				<h1 id="title">Darker Notes</h1>
 			</div>
@@ -121,14 +116,14 @@
 		<main id="content" class="content container-fluid mx-auto">
 
 			<!-- Preview Window -->
-			<div class="container-fluid">
-				<!-- <button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button> -->
+			<!-- <div class="container-fluid">
+				<button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button>
 				<div id="preview-shade" class="shadow rounded height collapse hide" aria-expanded="false">
 					<div>
 						<em>write some text so we can render it!</em>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<!-- Filename title -->
 			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">New File</div>
@@ -139,6 +134,27 @@
 
 
 
+
+		<!-- Preview Modal -->
+		<div class="modal fade dark" id="preview-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content dark shadow">
+					<div class="modal-header dark">
+						<h5 class="modal-title">Preview</h5>
+						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="text-light" aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				  	<div id="preview-shade" class="modal-body text-center"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<!-- Print button. Shows when preview is on, and hidden when off. Needs JS to open new tab/window -->
+						<button id="print-button" role="button" class="btn btn-danger" data-toggle="tootlip" data-placement="bottom" title="print"><i class="fas fa-file-pdf"></i> Print</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Help Modal -->
 		<div class="modal fade dark" id="help-modal" tabindex="-1" role="dialog">

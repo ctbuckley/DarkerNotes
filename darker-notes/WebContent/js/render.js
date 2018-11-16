@@ -13,6 +13,7 @@ var convert = function() {
 	var html = converter.makeHtml(document.getElementById('text-area').innerText)
 	$('#preview-shade').html(html);
 	console.log(html)
+	console.log($('#preview-shade').html())
 	// render math in the preview-shade with KaTeX 
 	renderMathInElement(document.getElementById('preview-shade'), [
 		{left: "$$", right: "$$", display: true},
