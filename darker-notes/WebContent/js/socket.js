@@ -162,13 +162,13 @@ $(document).ready(function () {
 		console.log("Connected in socket.js")
 	}
 	socket.onmessage = function(event) {
-		console.log("Message in socket.js" + event.data)
+		console.log(event.data)
 		
 		//A message sent from server to client
 		
 		//Display a new notification to the user with message "event.data"
 		
-		//If action == notification {
+		//{
 		// Display a new notification to the user
 		//}
 	}
