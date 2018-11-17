@@ -74,13 +74,13 @@ public class getNotifications extends HttpServlet {
 				fromNames.add(rs2.getString("fromName"));
 			}
 			
-			rawHTML+=("<table class=\"table table-bordered\"><tbody>");
+			rawHTML+=("<table class=\"table table-bordered table-hover\"><tbody>");
 			if (notificationID.size() != 0) {
 				//rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
 				for (int j = 0; j < notificationID.size(); j++) {
 	        		//names
 		         	rawHTML+=("<tr>");
-		         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\">"  + "New File from " + fromNames.get(j) +  "</td>");
+		         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\" style=\"cursor: pointer;\">"  + "New File from " + fromNames.get(j) +  "</td>");
 		         	rawHTML+=("</tr>");
 				}
 				rawHTML+=("</tbody></table>");
