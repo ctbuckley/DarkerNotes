@@ -123,7 +123,8 @@ function loadNotifications() {
 	    	   $('#notification-button').popover({
 	    		   'title': 'Notifications',
 	    		   'html': true,
-	    		   'content': $('#notification-content').html()
+	    		   'content': $('#notification-content').html(),
+	    		   'trigger': 'manual'
 	    	   });
 	       }
 	   });

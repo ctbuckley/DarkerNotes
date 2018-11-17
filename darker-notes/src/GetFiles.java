@@ -99,7 +99,7 @@ public class GetFiles extends HttpServlet {
 					for (int j = 0; j < fileName.size(); j++) {
 		        		//names
 			         	rawHTML+=("<tr>");
-			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\">"  + fileName.get((j)) +  "</td>");
+			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\">"  + fileName.get((j)) +  "</td>");
 			         	rawHTML+=("</tr>");
 					}
 					rawHTML+=("</tbody></table>");

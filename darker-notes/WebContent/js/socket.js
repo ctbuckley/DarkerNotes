@@ -94,18 +94,56 @@ function logOutMap() {
 }
 
 function sendFile() {
+	console.log('sendFile() called')
 	
 	var emailToUser = document.getElementById("shareEmail").value;
 	var rawFileData = document.getElementById("text-area").innerHTML;
 	var currFileID = sessionStorage.getItem("currentFileID");
+	//Get Filename
+	var currFileName = "";
+	if (document.getElementById("text-title").innerHTML.length > 0) {
+		currFileName = document.getElementById("text-title").innerText;
+	} else {
+		currFileName = "New File";
+	}
 	
-	socket.send(JSON.stringify({
-		action: "SendFile",
-		email: sessionStorage.getItem("email"),
-		emailTo: emailToUser,
-		fileID: currFileID,
-		rawData: rawFileData
-	}));
+	if ("-1" != currFileID) {
+		$.ajax({
+	    	type: "POST",
+	    	url: "ShareFile",
+	    	async: true,
+	    	data: {
+	    		email: sessionStorage.getItem("email"),
+	    		emailTo: emailToUser,
+	    		rawData: rawFileData,
+	    		fileName: currFileName
+	    	},
+	    	success: function(result) {
+	    		if (result.success == "true") {
+	    			console.log(result)
+	    			// send file if the destination email exists in the database
+	    			socket.send(JSON.stringify({
+	    				action: "SendFile",
+	    				email: sessionStorage.getItem("email"),
+	    				emailTo: emailToUser,
+	    				fileID: currFileID,
+	    				rawData: rawFileData
+	    			}));
+	    			
+					// close the modal window
+					$('#share-modal').modal('hide');
+        		}
+        		else {
+        			
+        			console.log(result.data.errorMsg);
+        			//$('#share-error').html(result.data.errorMsg)
+        		}
+	    	},
+	    	error: function(result) {
+	    		console.log("Error from sendFile")
+	    	}
+		});
+	}
 }
 
 //Setting up the WebSocket connection for client side
