@@ -2,10 +2,45 @@
 // toggles show/hide when #notification-button
 // hides #notification-button when user clicks outside of notification button
 $('#notification-button').click(function() {
+	// loadNotifications(); // DO WE NEED THIS HERE?
     $(this).popover('toggle');
 }).blur(function() {
     $(this).popover('hide');
 });
+
+
+function loadNotifications() {
+	var emailIn = sessionStorage.getItem("email");	
+	$.ajax({
+	       type: "POST",
+	       url: "getNotifications",
+	       async: true,
+	       data: {
+	            email: emailIn
+	       },
+	       success: function(result) {
+	    	   //do anything if need be
+	    	   //put result into the notifications table html
+	    	   console.log('incoming notification:', result)
+
+	    	   // synchronously save notification content, then insert into dynamically loaded Bootstrap popup
+	    	   $.when($('#notification-content').html(result)).then(function() {
+	    		   		console.log('now initializing popover')
+	    			   $('#notification-button').popover({
+			    		   'title': 'Notifications',
+			    		   'html': true,
+			    		   'trigger': 'manual',
+			    		   'content': function() {
+			    			   return $('#notification-content').html();
+			    		   }
+			    	   })
+		    	   }
+	    	   );
+	    	   
+	       }
+	});
+	
+}
 
 
 function handleNotification(id) {
@@ -27,13 +62,15 @@ function handleNotification(id) {
     	},
     	success: function(result) {
     		if (result.success == "true") {
-    			//display preview modal with option to accept/decline file
-    			
     			//Use below to set up preview window
     			//result.data.rawData
     			//result.data.fileName
     			//result.data.fromName
+    			$('#notification-preview-title').html(result.data.fileName + " from " + result.data.fromName);
+    			convert(result.data.rawData, document.getElementById('notification-preview-file-content'));
     			
+    			//display preview modal with option to accept/decline file
+    			$('#notification-preview-modal').modal('show');
     			//also pass "id" to acceptNotification() or declineNotification()
     			//set up 
     			

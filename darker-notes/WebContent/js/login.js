@@ -83,7 +83,7 @@ function onLogIn(email) {
 	$("#notification-button-wrapper").toggleClass("d-none");
 	//$("#delete-button").toggleClass("d-none");
 	$("#title").css("padding-right", "0");
-  console.log("Loading Notifications now")
+	//console.log("Loading Notifications now")
 	loadNotifications();
 	
 	console.log("Getting Files Now")
@@ -102,31 +102,6 @@ function onLogIn(email) {
 
 	//change sign in button to show name and change onclick attribute to call a sign out function
 	//display share button
-}
-
-function loadNotifications() {
-	var emailIn = sessionStorage.getItem("email");
-	
-	$.ajax({
-	       type: "POST",
-	       url: "getNotifications",
-	       async: true,
-	       data: {
-	            email: emailIn
-	       },
-	       success: function(result) {
-	    	   //do anything if need be
-	    	   //put result into the notifications table html
-	    	   console.log(result)
-	    	   $('#notification-content').html(result)
-	    	   $('#notification-button').popover({
-	    		   'title': 'Notifications',
-	    		   'html': true,
-	    		   'content': $('#notification-content').html(),
-	    		   'trigger': 'manual'
-	    	   });
-	       }
-	   });
 }
 
 

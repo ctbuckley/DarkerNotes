@@ -8,14 +8,15 @@ converter.setOption('simplifiedAutoLink', true);
 converter.setOption('tables', true);
 
 // called when ready to parse and render an HTML element's text
-var convert = function() {
-	//var html = converter.makeHtml($('#text-area').val())
-	var html = converter.makeHtml(document.getElementById('text-area').innerText)
-	$('#preview-shade').html(html);
-	console.log(html)
-	console.log($('#preview-shade').html())
+// input: 	a string of source text to be converted (i.e. the markdown source code)
+//			a target HTML element (e.g. the preview-shade html element is the target destination for converted markdown for the preview function)
+var convert = function(sourceText, targetElement) {
+	var html = converter.makeHtml(sourceText)
+	targetElement.innerHTML = html;
+	console.log('converted html', html)
+	console.log('target html', targetElement.innerHTML)
 	// render math in the preview-shade with KaTeX 
-	renderMathInElement(document.getElementById('preview-shade'), [
+	renderMathInElement(targetElement, [
 		{left: "$$", right: "$$", display: true},
 		{left: "\\(", right: "\\)", display: false},
 		{left: "\\[", right: "\\]", display: true}
@@ -26,8 +27,7 @@ var convert = function() {
 
 /* Preview button code */
 $('#preview-button').click(function() {
-		convert()	
-		console.log('render markdown + LaTeX in preview-shade')
+		$.when(convert(document.getElementById('text-area').innerText, document.getElementById('preview-shade'))).then(console.log('render markdown + LaTeX in preview-shade'));
 });
 
 //disable preview button if there is no text in input box

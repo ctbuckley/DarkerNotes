@@ -171,6 +171,9 @@ $(document).ready(function () {
 		//{
 		// Display a new notification to the user
 		//}
+		
+		// LOAD THE NEW NOTIFICATION AS IT COMES IN
+		loadNotifications()
 	}
 	socket.onclose = function(event) {
 		console.log("Disconnected in socket.js")
