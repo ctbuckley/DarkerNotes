@@ -136,8 +136,8 @@ function updateSidebar() {
     });
 }
 
-function deleteFile() {
-	var currFileID = sessionStorage.getItem("currentFileID");
+function deleteFile(fileId) {
+	var currFileID = fileId;
 	var email = sessionStorage.getItem("email");
 	
 	if (currFileId != "-1") {
