@@ -27,3 +27,7 @@
 	border-radius: 5px;
 	padding: 10px;
 }
+/* application title */
+#title {
+	padding-right: 8.5vw;
+}

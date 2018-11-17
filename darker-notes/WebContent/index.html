@@ -39,97 +39,99 @@
 
 	</head>
 	<body>
-		<!-- Navbar -->
-		<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div id="sidebar-button-wrapper" class="nav-item nav-link d-none">
-				<button type="button" id="sidebarCollapse" class="btn btn-dark navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="true">
-	                <span></span>
-	                <span></span>
-	                <span></span>
-	            </button>
-			</div>
-			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Click here for help">
-				<button id="help-button" role="button" data-toggle="modal" data-target="#help-modal" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Help">
-					<i class="fas fa-question fa-2x"></i>
-				</button>
-			</div>
-			<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Preview document">
-				<span id="preview-popover" class="d-inline-block" data-toggle="popover" data-placement="right" data-content="❌ write some text first!">
-					<button id="preview-button" role="button" class="btn btn-dark disabled" disabled="true" data-toggle="modal" data-target="#preview-modal" data-toggle="tooltip" data-placement="bottom" title="Preview">
-						<i class="far fa-eye fa-inverse fa-2x"></i>
-					</button>
-				</span>
-			</div>
-			
-			<div class="mx-auto">
-				<h1 id="title">Darker Notes</h1>
-			</div>
-			<!-- Delete button -->
-			<div class="nav-item nav-link d-none" data-toggle="modal" data-target="#delete-modal" id="delete-button" data-placement="bottom" title="Delete File">
-				<button type="button" class="btn btn-dark">
-					<i class="fas fa-trash-alt fa-2x"></i>
-				</button>
-			</div>
-			<!-- Notification button -->
-			<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="left" title="">
-				<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
-					<i class="fas fa-bell fa-2x"></i>
-				</button>
-				<!-- Notification content -->
-				<div id="notification-content" class="d-none"></div>
-			</div>
-			<form class="form-inline">
-				<!-- Share Button, at first hidden. -->
-				<button class="mx-3 btn btn-outline-warning d-none" id="share-button" type="button" data-toggle="modal" data-target="#share-modal">share</button>
-				<!-- Sign in Button, at first displayed -->
-				<button class="mx-3 btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
-				<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
-				<button class="mx-auto btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
+		<div id="outercontainer">
 
-			</form>
-		</nav>
-
-
-		<!-- Sidebar -->
-		<div class="row d-flex d-md-block flex-nowrap wrapper" style="margin-left: 0;">
-	        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width rounded shadow active" id="sidebar" aria-expanded="false">
-                <div class="list-group border-0 card text-center text-md-left">
-                	<div class="list-group-item d-inline-block border-0" data-toggle="collapse" aria-expanded="true">
-                		<h4 class="d-none d-md-inline" style="margin-top: -1px;">Files</h4>
-                	</div>
-                	<div class="list-group-item collapsed border-0">
-                		<div class="d-flex justify-content-between">
-	                		<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file"></i>New File</button>
-	                		<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy"></i>Copy File</button>
-               			</div>
-               		</div>
-	                <div id="sidebar-files" style="display: block; overflow-y: auto;">
-						<!-- Content goes here -->
-					</div>
-	            </div>
-	        </div>
-        </div>
-
-
-
-		<!-- Main Window -->
-		<main id="content" class="content container-fluid mx-auto">
-
-			<!-- Preview Window -->
-			<!-- <div class="container-fluid">
-				<button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button>
-				<div id="preview-shade" class="shadow rounded height collapse hide" aria-expanded="false">
-					<div>
-						<em>write some text so we can render it!</em>
-					</div>
+			<!-- Navbar -->
+			<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div id="sidebar-button-wrapper" class="nav-item nav-link d-none">
+					<button type="button" id="sidebarCollapse" class="btn btn-dark navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="true">
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		            </button>
 				</div>
-			</div> -->
+				<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Click here for help">
+					<button id="help-button" role="button" data-toggle="modal" data-target="#help-modal" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="Help">
+						<i class="fas fa-question fa-2x"></i>
+					</button>
+				</div>
+				<div class="nav-item nav-link" data-toggle="tooltip" data-placement="bottom" title="Preview document">
+					<span id="preview-popover" class="d-inline-block" data-toggle="popover" data-placement="right" data-content="❌ write some text first!">
+						<button id="preview-button" role="button" class="btn btn-dark disabled" disabled="true" data-toggle="modal" data-target="#preview-modal" data-toggle="tooltip" data-placement="bottom" title="Preview">
+							<i class="far fa-eye fa-inverse fa-2x"></i>
+						</button>
+					</span>
+				</div>
 
-			<!-- Filename title -->
-			<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">New File</div>
-			<!-- editable HTML text area -->
-			<div id="text-area" contentEditable="true"></div>
-		</main>
+				<div class="mx-auto">
+					<h1 id="title">Darker Notes</h1>
+				</div>
+				<!-- Delete button -->
+				<div class="nav-item nav-link d-none" data-toggle="modal" data-target="#delete-modal" id="delete-button" data-placement="bottom" title="Delete File">
+					<button type="button" class="btn btn-dark">
+						<i class="fas fa-trash-alt fa-2x"></i>
+					</button>
+				</div>
+				<!-- Notification button -->
+				<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="left" title="">
+					<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
+						<i class="fas fa-bell fa-2x"></i>
+					</button>
+					<!-- Notification content -->
+					<div id="notification-content" class="d-none"></div>
+				</div>
+				<form class="form-inline">
+					<!-- Share Button, at first hidden. -->
+					<button class="mx-3 btn btn-outline-warning d-none" id="share-button" type="button" data-toggle="modal" data-target="#share-modal">share</button>
+					<!-- Sign in Button, at first displayed -->
+					<button class="mx-3 btn btn-outline-warning" id="signin-button" type="button" data-toggle="modal" data-target="#signin-modal">sign in</button>
+					<!-- Sign out Button, at first hidden . Add d-none to class list to hide-->
+					<button class="mx-auto btn btn-outline-warning d-none" id="signout-button" type="button" data-toggle="modal" data-target="#signout-modal">sign out</button>
+
+				</form>
+			</nav>
+
+
+			<!-- Sidebar -->
+			<div class="row d-flex d-md-block flex-nowrap wrapper" style="margin-left: 0;">
+		        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width rounded shadow active" id="sidebar" aria-expanded="false">
+	                <div class="list-group border-0 card text-center text-md-left">
+	                	<div class="list-group-item d-inline-block border-0" data-toggle="collapse" aria-expanded="true">
+	                		<h4 class="d-none d-md-inline" style="margin-top: -1px;">Files</h4>
+	                	</div>
+	                	<div class="list-group-item collapsed border-0">
+	                		<div class="d-flex justify-content-between">
+		                		<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file"></i>New File</button>
+		                		<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy"></i>Copy File</button>
+	               			</div>
+	               		</div>
+		                <div id="sidebar-files" style="display: block; overflow-y: auto;">
+							<!-- Content goes here -->
+						</div>
+		            </div>
+		        </div>
+	        </div>
+
+
+
+			<!-- Main Window -->
+			<main id="content" class="content container-fluid mx-auto">
+
+				<!-- Preview Window -->
+				<!-- <div class="container-fluid">
+					<button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button>
+					<div id="preview-shade" class="shadow rounded height collapse hide" aria-expanded="false">
+						<div>
+							<em>write some text so we can render it!</em>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- Filename title -->
+				<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">New File</div>
+				<!-- editable HTML text area -->
+				<div id="text-area" contentEditable="true"></div>
+			</main>
 
 
 
@@ -159,8 +161,8 @@
 		<!-- Preview Modal -->
 		<div class="modal fade dark" id="preview-modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
-				<div class="modal-content dark shadow">
-					<div class="modal-header dark">
+				<div id="preview-content" class="modal-content dark shadow">
+					<div class="d-print-none modal-header dark">
 						<h5 class="modal-title">Preview</h5>
 						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -168,7 +170,7 @@
 						</button>
 					</div>
 				  	<div id="preview-shade" class="modal-body text-center"></div>
-					<div class="modal-footer">
+					<div class="modal-footer d-print-none">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<!-- Print button. Shows when preview is on, and hidden when off. Needs JS to open new tab/window -->
 						<button id="print-button" role="button" class="btn btn-danger" data-toggle="tootlip" data-placement="bottom" title="print"><i class="fas fa-file-pdf"></i> Print</button>
@@ -358,7 +360,12 @@
 				</div>
 			</form>
 		</div>
+	</div>
 
+		<!-- Printable -->
+		<div id="print-format">
+
+		</div>
 		<!-- Our scripts -->
 		<script src="./js/app.js"></script>
 		<script src="./js/sidebar.js"></script>

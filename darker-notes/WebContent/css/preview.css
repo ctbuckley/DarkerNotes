@@ -3,10 +3,17 @@
 	/* border-radius: 5px; */
 	/* background: #2C2C2C; */
 	background: white;
-	color: black;
+	color: black !important;
 	height: 75vh;
 	display: block;
 	overflow: auto;
 	padding: 10%;
 	text-align: left !important;
+	word-wrap: break-word;
+}
+#preview-shade code {
+	background-color: #b3b3b3;
+	border-radius: 10px;
+	padding: 5%;
+	display: block;
 }

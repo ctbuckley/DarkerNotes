@@ -14,6 +14,7 @@ function logout() {
 	sessionStorage.setItem("signedin", false);
 	
 	// hide elements, put back into guest mode
+	$("title").css("padding-right", "8.5vw");
 	$("#signin-button").toggleClass("d-none");
 	$("#signout-button").toggleClass("d-none");
 	$("#share-button").toggleClass("d-none");

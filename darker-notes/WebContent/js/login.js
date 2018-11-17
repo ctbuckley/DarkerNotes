@@ -82,8 +82,7 @@ function onLogIn(email) {
 	$("#notification-button").toggleClass("d-none");
 	$("#notification-button-wrapper").toggleClass("d-none");
 	//$("#delete-button").toggleClass("d-none");
-	//$("#title").css("padding-right", "-=80");
-
+	$("#title").css("padding-right", "0");
   console.log("Loading Notifications now")
 	loadNotifications();
 	
