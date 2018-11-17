@@ -21,5 +21,5 @@ function declineNotification(id) {
 }
 
 // listen for clicks on accept and decline buttons
-$('#notification-accept-button').click(acceptNotification(id))
-$('#notification-decline-button').click(declineNotification(id))
+//$('#notification-accept-button').click(acceptNotification(id))
+//$('#notification-decline-button').click(declineNotification(id))
