@@ -1,0 +1,8 @@
+.animOut {
+	transition-duration: 1.5s;
+	transition-property: margin-right;
+	transition-timing-function: ease-in-out;
+}
+.animIn {
+
+}
