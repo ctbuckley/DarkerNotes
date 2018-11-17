@@ -58,16 +58,12 @@
 		display: block;
 		color: #000000 /* !important */;
 		font-weight: bolder;
-		/* margin-top: 1.6cm;
-		margin-bottom: 1.6cm; */
-		/* margin: 1.6cm; */
 		word-wrap: break-word;
 		
 		font-family: 'Fira Sans', sans-serif;
 		/* border-radius: 5px; */
 		/* background: #2C2C2C; */
 		background: white;
-		/* padding: 10%; */
 		text-align: left !important;
 		-webkit-print-color-adjust: exact !important;/*Adding background color to print*/
 		-webkit-print-color-adjust: exact;
