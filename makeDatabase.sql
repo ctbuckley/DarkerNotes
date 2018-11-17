@@ -30,7 +30,7 @@ CREATE TABLE Notifications (
     isRead INT(1) NOT NULL,
     fileName VARCHAR(50) NOT NULL,
     rawData Text(64000) NOT NULL,
-    foreign key fk3(userID) REFERENCES Users(userID),
+    foreign key fk3(userID) REFERENCES Users(userID)
 );
 
 SELECT * FROM Users;
