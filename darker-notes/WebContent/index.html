@@ -93,25 +93,36 @@
 
 
 			<!-- Sidebar -->
-			<div class="row d-flex d-md-block flex-nowrap wrapper" style="margin-left: 0;">
-		        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width rounded shadow active" id="sidebar" aria-expanded="false">
-	                <div class="list-group border-0 card text-center text-md-left">
-	                	<div class="list-group-item d-inline-block border-0" data-toggle="collapse" aria-expanded="true">
-	                		<h4 class="d-none d-md-inline" style="margin-top: -1px;">Files</h4>
-	                	</div>
-	                	<div class="list-group-item collapsed border-0">
-	                		<div class="d-flex justify-content-between">
-		                		<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file" style="padding-right:6px;"></i>New File</button>
-		                		<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy" style="padding-right:6px;"></i>Copy File</button>
-	               			</div>
-	               		</div>
-		                <div id="sidebar-files" style="display: block; overflow-y: auto;">
-							<!-- Content goes here -->
-						</div>
-		            </div>
+			<div id="wrapper">
+				<div id="sidebar-wrapper">
+	            	<ul class="sidebar-nav">
+		                <li class="row sidebar-brand">
+		                	<div class="col m-auto">
+		                    	<h4>File Drawer</h4>
+		                	</div>
+		                </li>
+		                <li class="row">
+		                	<div class="col pb-3">
+		                    	<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file" style="padding-right:6px;"></i>New File</button>
+		               			<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy" style="padding-right:6px;"></i>Copy File</button>
+		                	</div>
+		                </li>
+		                <li>
+		                    <div id="sidebar-files">
+									<!-- Content goes here -->
+							</div>
+		                </li>
+		            </ul>
 		        </div>
 	        </div>
-
+        
+			<script>
+				// FOR SIDEBAR
+			    $("#sidebarCollapse").click(function(e) {
+			        e.preventDefault();
+			        $("#wrapper").toggleClass("toggled");
+			    });
+			</script>
 
 
 			<!-- Main Window -->
@@ -372,7 +383,7 @@
 		<script src="./js/sidebar.js"></script>
 		<script src="./js/render.js"></script>
 		
-		<script src="./js/viewChange.js"></script>
+		<!-- <script src="./js/viewChange.js"></script> -->
 		<script src="./js/preview.js"></script>
 		<script src="./js/socket.js"></script>
 		<script src="./js/logout.js"></script>
