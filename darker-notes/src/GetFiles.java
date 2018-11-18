@@ -97,10 +97,16 @@ public class GetFiles extends HttpServlet {
 		         	
 		         	// populate files found in database
 					for (int j = 0; j < fileName.size(); j++) {
+						// truncate the displayed filename if it's too long
+						String truncFile = fileName.get((j));
+			         	int cutOff = 15;
+			         	if (truncFile.length() > cutOff) {
+			         		truncFile = truncFile.substring(0, cutOff) + "...";
+			         	}
 		        		//names
 			         	rawHTML+=("<tr>");
 			         	String trashButton = "<div class=\"ml-auto mr-3\"><button class=\"btn btn-outline-danger ml-auto\" onclick=\"deleteFile(" + aFileID.get(j) + ")\"><i class=\"fas fa-trash-alt\"></i></button></div>";
-			         	String fileNameTag = "<div class=\"\"><span class=\"mr-auto\">" + fileName.get((j)) + "</span></div>";
+			         	String fileNameTag = "<div class=\"\"><span class=\"mr-auto\">" + truncFile + "</span></div>";
 			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\" class=\"row\">"  + fileNameTag + trashButton +  "</td>");
 			         	rawHTML+=("</tr>");
 					}

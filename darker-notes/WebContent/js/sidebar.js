@@ -1,7 +1,13 @@
 /** For the sidebar animations **/
+// for the button menu -> x
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $(this).toggleClass('active');
+    	$(this).toggleClass('collapsed');
     });
+});
+
+// for the slidein/slideout functionality
+$("#sidebarCollapse").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
 });
