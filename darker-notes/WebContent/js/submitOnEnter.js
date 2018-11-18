@@ -10,6 +10,9 @@ function submitOnEnter(id, functionCall) {
 }
 //for signin
 submitOnEnter("#passIn", validateLogin);
+//for signup
+submitOnEnter("#nameIn-addUser", addUser);
 //for file share
 submitOnEnter("#shareEmail", sendFile);
+
 
