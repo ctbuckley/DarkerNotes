@@ -12,8 +12,9 @@
 	word-wrap: break-word;
 }
 #preview-shade code, #notification-preview-file-content code {
-	background-color: #b3b3b3;
-	border-radius: 10px;
-	padding: 5%;
-	display: block;
+	color: black;
+	background-color: #e6e6e6;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	/* display: block; */
 }
