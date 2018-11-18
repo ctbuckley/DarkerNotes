@@ -42,6 +42,14 @@ function loadNotifications() {
 	
 }
 
+// animation for wiggling notification
+// used when user gets a new notification, in socket.js around line 179
+function wiggleNotificationBell() {
+	$.when($('#notification-button').addClass('new-notification')).then(window.setTimeout(function () {
+	    $('#notification-button').removeClass('new-notification');
+	}, 1000));
+}
+
 
 // unfortunately need these to pass data to acceptNotification and declineNotification
 var currNotificationRawData = "";
