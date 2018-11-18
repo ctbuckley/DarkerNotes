@@ -16,6 +16,7 @@ function loadFile(fileID) {
         			
         			// enable preview button if the file is not empty
         			togglePreviewButton($('#text-area'));
+        			
         		}
         		else {
         			//Update error message html to display error message
@@ -132,6 +133,11 @@ function updateSidebar() {
                console.log(result)
                document.getElementById("sidebar-files").innerHTML = "";
                $("#sidebar-files").append(result);
+               
+               // listen for delete button events
+               spawnDeleteButtonListener();
+               // initialize popovers for delete buttons
+               initDeletePopovers();
         }
     });
 }
