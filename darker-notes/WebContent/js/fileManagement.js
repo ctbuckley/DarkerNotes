@@ -16,6 +16,7 @@ function loadFile(fileID) {
         			
         			// enable preview button if the file is not empty
         			togglePreviewButton($('#text-area'));
+        			
         		}
         		else {
         			//Update error message html to display error message
@@ -132,6 +133,11 @@ function updateSidebar() {
                console.log(result)
                document.getElementById("sidebar-files").innerHTML = "";
                $("#sidebar-files").append(result);
+               
+               // listen for delete button events
+               spawnDeleteButtonListener();
+               // initialize popovers for delete buttons
+               initDeletePopovers();
         }
     });
 }
@@ -140,14 +146,14 @@ function deleteFile(fileId) {
 	var currFileID = fileId;
 	var email = sessionStorage.getItem("email");
 	
-	if (currFileId != "-1") {
+	if (currFileID != "-1") {
 		//delete currFileid for user email
 		$.ajax({
 	    	type: "POST",
 	    	url: "DeleteFile",
 	    	async: true,
 	    	data: {
-				email: emailIn,
+				email: email,
 				fileId: currFileID
 	    	},
 	    	success: function(result) {

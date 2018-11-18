@@ -129,20 +129,22 @@ function sendFile() {
 	    				fileID: currFileID,
 	    				rawData: rawFileData
 	    			}));
-	    			
+	    			$('#share-error').html(result.data.errorMsg)
 					// close the modal window
 					$('#share-modal').modal('hide');
         		}
         		else {
-        			
         			console.log(result.data.errorMsg);
-        			//$('#share-error').html(result.data.errorMsg)
+        			$('#share-error').html(result.data.errorMsg)
         		}
 	    	},
 	    	error: function(result) {
 	    		console.log("Error from sendFile")
 	    	}
 		});
+	}
+	else {
+		$('#share-error').html("Cannot send an empty file.")
 	}
 }
 

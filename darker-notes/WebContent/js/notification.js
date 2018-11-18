@@ -106,10 +106,14 @@ function acceptNotification(notificationId, fileName, rawData) {
 				// refresh sidebar file list to include accepted file
     			updateSidebar();
     			// refresh notification list after removing the notification
-    			loadNotifications() 
+    			loadNotifications();
     			
     		} else {
     			console.log("Error in acceptNotification")
+    			// refresh sidebar file list to include accepted file
+    			updateSidebar();
+    			// refresh notification list after removing the notification
+    			loadNotifications();
     		}
     	}
     })
@@ -142,9 +146,11 @@ function declineNotification(id) {
     		if (result.success == "true") {
     			console.log('declineNotification')
     			// refresh notification list after removing the notification
-    			loadNotifications() 			
+    			loadNotifications();	
     		} else {
     			console.log("Error in declineNotification")
+    			loadNotifications();
+    			updateSidebar();
     		}
     	}
     })

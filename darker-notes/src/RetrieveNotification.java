@@ -42,6 +42,9 @@ public class RetrieveNotification extends HttpServlet {
 			String fromName = rs.getString("fromName");
 			String fileName = rs.getString("fileName");
 			
+			rawData = rawData.replace("\\", "\\\\");
+			rawData = rawData.replaceAll("\"","\\\\\"");
+			
 			//Set up a JSON return
 			String objectToReturn =
 					  "{\n"
