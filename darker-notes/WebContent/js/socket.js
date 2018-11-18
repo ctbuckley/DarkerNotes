@@ -143,6 +143,9 @@ function sendFile() {
 	    	}
 		});
 	}
+	else {
+		$('#share-error').html("Cannot send an empty file.")
+	}
 }
 
 //Setting up the WebSocket connection for client side
