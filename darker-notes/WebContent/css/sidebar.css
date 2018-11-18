@@ -60,19 +60,38 @@ body {
   padding-left: 250px;
 }
 
+#sidebar-files {
+	/* scrolling */
+	display: block;
+	overflow-y: auto;
+}
+
+#sidebar-files::-webkit-scrollbar-thumb {
+	/* fixing black bar at bottom bug */
+	background: none;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-thumb {
+	/* fixing black bar at bottom bug */
+	background: none;
+}
+
 #sidebar-wrapper {
-  z-index: 1000;
-  position: fixed;
-  left: 250px;
-  width: 0;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  background: #000;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+	border-radius: 5px;
+	
+	z-index: 1000;
+	position: fixed;
+	left: 250px;
+	width: 0;
+	/* height: 100%; */
+	height: 81.9%;
+	margin-left: -250px;
+	overflow-y: auto;
+	background: #2c2c2c;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -110,7 +129,7 @@ body {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: #2c2c2c;
 }
 
 .sidebar-nav li a:hover {

@@ -96,12 +96,19 @@
 			<div id="wrapper">
 				<div id="sidebar-wrapper">
 	            	<ul class="sidebar-nav">
-		                <li class="d-flex justify-content-between sidebar-brand">
-		                    <button onclick="addFile()" class="col mx-auto btn btn-dark"><i class="fas fa-file" style="padding-right:6px;"></i>New File</button>
-		               		<button onclick="copyFile()" class="col mx-auto btn btn-dark"><i class="fas fa-copy" style="padding-right:6px;"></i>Copy File</button>
+		                <li class="row sidebar-brand">
+		                	<div class="col m-auto">
+		                    	<h4>File Drawer</h4>
+		                	</div>
+		                </li>
+		                <li class="row">
+		                	<div class="col pb-3">
+		                    	<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file" style="padding-right:6px;"></i>New File</button>
+		               			<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy" style="padding-right:6px;"></i>Copy File</button>
+		                	</div>
 		                </li>
 		                <li>
-		                    <div id="sidebar-files" style="display: block; overflow-y: auto;">
+		                    <div id="sidebar-files">
 									<!-- Content goes here -->
 							</div>
 		                </li>
@@ -375,7 +382,7 @@
 		<script src="./js/sidebar.js"></script>
 		<script src="./js/render.js"></script>
 		
-		<script src="./js/viewChange.js"></script>
+		<!-- <script src="./js/viewChange.js"></script> -->
 		<script src="./js/preview.js"></script>
 		<script src="./js/socket.js"></script>
 		<script src="./js/logout.js"></script>
