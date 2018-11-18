@@ -44,7 +44,7 @@
 			<!-- Navbar -->
 			<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div id="sidebar-button-wrapper" class="nav-item nav-link d-none">
-					<button type="button" id="sidebarCollapse" class="btn btn-dark navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="true">
+					<button type="button" id="sidebarCollapse" class="btn btn-light collapsed">
 		                <span></span>
 		                <span></span>
 		                <span></span>
@@ -74,9 +74,11 @@
 				</div>
 				<!-- Notification button -->
 				<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="left" title="">
-					<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
-						<i class="fas fa-bell fa-2x"></i>
-					</button>
+					<span id="new-notification-popup" class="d-inline-block" tabindex="0" data-toggle="tooltip" data-original-title="">
+						<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
+							<i class="fas fa-bell fa-2x"></i>
+						</button>
+					</span>
 					<!-- Notification content -->
 					<div id="notification-content" class="d-none"></div>
 				</div>
@@ -90,43 +92,36 @@
 
 				</form>
 			</nav>
+			
 
 
 			<!-- Sidebar -->
-			<div class="row d-flex d-md-block flex-nowrap wrapper" style="margin-left: 0;">
-		        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width rounded shadow active" id="sidebar" aria-expanded="false">
-	                <div class="list-group border-0 card text-center text-md-left">
-	                	<div class="list-group-item d-inline-block border-0" data-toggle="collapse" aria-expanded="true">
-	                		<h4 class="d-none d-md-inline" style="margin-top: -1px;">Files</h4>
-	                	</div>
-	                	<div class="list-group-item collapsed border-0">
-	                		<div class="d-flex justify-content-between">
-		                		<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file"></i>New File</button>
-		                		<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy"></i>Copy File</button>
-	               			</div>
-	               		</div>
-		                <div id="sidebar-files" style="display: block; overflow-y: auto;">
-							<!-- Content goes here -->
-						</div>
-		            </div>
+			<div id="wrapper">
+				<div id="sidebar-wrapper">
+	            	<ul class="sidebar-nav">
+		                <li class="row sidebar-brand">
+		                	<div class="col m-auto">
+		                    	<h4>File Drawer</h4>
+		                	</div>
+		                </li>
+		                <li class="row">
+		                	<div class="col pb-3">
+		                    	<button onclick="addFile()" class="mx-auto btn btn-dark"><i class="fas fa-file" style="padding-right:6px;"></i>New File</button>
+		               			<button onclick="copyFile()" class="mx-auto btn btn-dark"><i class="fas fa-copy" style="padding-right:6px;"></i>Copy File</button>
+		                	</div>
+		                </li>
+		                <li>
+		                    <div id="sidebar-files">
+									<!-- Content goes here -->
+							</div>
+		                </li>
+		            </ul>
 		        </div>
 	        </div>
 
 
-
 			<!-- Main Window -->
 			<main id="content" class="content container-fluid mx-auto">
-
-				<!-- Preview Window -->
-				<!-- <div class="container-fluid">
-					<button role="button" class="btn btn-danger" data-toggle="collapse" data-target="#preview-shade" aria-expanded="true">vertical collapsible</button>
-					<div id="preview-shade" class="shadow rounded height collapse hide" aria-expanded="false">
-						<div>
-							<em>write some text so we can render it!</em>
-						</div>
-					</div>
-				</div> -->
-
 				<!-- Filename title -->
 				<div id="text-title" class="my-3" contenteditable="true" style="margin-left: 30%; margin-right: 30%;">New File</div>
 				<!-- editable HTML text area -->
@@ -135,6 +130,27 @@
 
 
 
+
+
+		<!-- Notification Preview Modal -->
+		<div class="modal fade dark" id="notification-preview-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content dark shadow">
+					<div class="modal-header dark">
+						<h5 id="notification-preview-title" class="modal-title"></h5>
+						<!-- <button type="button" class="close" data-dismiss="modal"></button> -->
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="text-light" aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				  	<div id="notification-preview-file-content" class="modal-body text-center"></div>
+					<div class="modal-footer">
+						<button id="notification-decline-button" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> Decline</button>
+						<button id="notification-accept-button" role="button" class="btn btn-warning" data-dismiss="modal"><i class="fas fa-check"></i> Accept</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 		<!-- Preview Modal -->
@@ -219,11 +235,12 @@
  								 </div>
 								<input autofocus class="form-control" placeholder="example@example.com" type="email" id="shareEmail">
 							</div>
+							<div id="share-error" class="error my-2 text-center text-danger"></div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
 							<!-- TODO the below line will need to call a function/servlet -->
-							<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="sendFile()">share</button>
+							<button type="button" class="btn btn-secondary" onclick="sendFile()">share</button>
 						</div>
 					</div>
 				</div>
@@ -293,7 +310,7 @@
 							<div class="input-group mb-3">
 								<input class="form-control" placeholder=" Password" type="text" onfocus="(this.type='password')" id="passIn">
 							</div>
-							<div id="signin-error" class="error text-center text-danger bg-light"></div>
+							<div id="signin-error" class="error my-2 text-center text-danger"></div>
 							<p class="text-muted"><em>Don't have an account? Click "sign up" below!</em></p>
 						</div>
 						<div class="modal-footer">
@@ -327,7 +344,7 @@
 							<div class="input-group mb-3">
 								<input class="form-control" placeholder=" Username" type="text" id="nameIn-addUser">
 							</div>
-							<div id="signup-error" class="error text-center text-danger bg-light"></div>
+							<div id="signup-error" class="error my-2 text-center text-danger"></div>
 							<p class="text-muted"><em>Already have an account? Click "sign in" below!</em></p>
 						</div>
 						<div class="modal-footer">
@@ -340,6 +357,7 @@
 			</form>
 		</div>
 	</div>
+	
 
 		<!-- Printable -->
 		<div id="print-format">
@@ -350,12 +368,14 @@
 		<script src="./js/app.js"></script>
 		<script src="./js/sidebar.js"></script>
 		<script src="./js/render.js"></script>
-		<script src="./js/login.js"></script>
-		<script src="./js/viewChange.js"></script>
+		
+		<!-- <script src="./js/viewChange.js"></script> -->
 		<script src="./js/preview.js"></script>
 		<script src="./js/socket.js"></script>
 		<script src="./js/logout.js"></script>
 		<script src="./js/fileManagement.js"></script>
 		<script src="./js/focus.js"></script>
+		<script src="./js/notification.js"></script>
+		<script src="./js/login.js"></script>
 	</body>
 </html>

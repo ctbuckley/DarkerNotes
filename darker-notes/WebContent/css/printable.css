@@ -69,10 +69,11 @@
 		-webkit-print-color-adjust: exact;
 	}
 	#print-format code {
-		background-color: #b3b3b3;
-		border-radius: 10px;
-		padding: 5mm;
-		display: block;
+		color: black !important;
+		background-color: #e6e6e6;
+		border-radius: 0.3em;
+		padding: 0.3em;
+		/* display: block; */
 		/* color: white ; */
 	}
 
