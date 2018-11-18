@@ -33,13 +33,13 @@ function initDeletePopovers() {
 		   'title': 'Delete this file?',
 		   'html': true,
 		   'container': tableRows[i],
-		   'placement': 'right',
+		   'placement': 'bottom',
 		   'trigger': 'manual',
 		   'content': function() {
 			   // want to get fileID from onclick (ex: onclick="handleDeletePopover(this, 23 )")
 			   //var fileID = ($($('.delete-button')[i]).attr('onclick')).split(' ')[1]; 
 			   var yesHtml = '<button class="btn btn-light" onclick="deleteFile(' + deleteFileID + ')">Yes</button>';
-			   var noHtml = '<button class="btn btn-light">No</button>';
+			   var noHtml = '<button class="btn btn-light" onclick="$(\'.delete-button\').addClass(\'d-none\');">No</button>';
 			   return yesHtml + ' ' + noHtml;
 		   }
 	   })
