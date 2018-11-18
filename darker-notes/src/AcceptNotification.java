@@ -73,10 +73,8 @@ public class AcceptNotification extends HttpServlet {
 			ps3.setString(2, Integer.toString(newFileId));
 			ps3.executeUpdate();
 			
-			
-			
-			
-			
+			rawData = rawData.replace("\\", "\\\\");
+			rawData = rawData.replaceAll("\"","\\\\\"");
 			
 			//Set up a JSON return
 			String objectToReturn =

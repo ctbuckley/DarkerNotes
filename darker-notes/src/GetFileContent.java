@@ -63,7 +63,7 @@ public class GetFileContent extends HttpServlet {
 				
 				
 				
-				System.out.println("Data: " + data);
+			
 				
 				data = data.replace("\\", "\\\\");
 				
