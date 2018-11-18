@@ -105,9 +105,9 @@ public class GetFiles extends HttpServlet {
 			         	}
 		        		//names
 			         	rawHTML+=("<tr>");
-			         	String trashButton = "<div class=\"ml-auto mr-3\"><button class=\"btn btn-outline-danger ml-auto\" onclick=\"deleteFile(" + aFileID.get(j) + ")\"><i class=\"fas fa-trash-alt\"></i></button></div>";
+			         	String trashButton = "<div class=\"ml-auto mr-3\"><button class=\"delete-button d-none btn btn-outline-danger ml-auto\" onclick=\"deleteFile(" + aFileID.get(j) + ")\"><i class=\"fas fa-trash-alt\"></i></button></div>";
 			         	String fileNameTag = "<div class=\"\"><span class=\"mr-auto\">" + truncFile + "</span></div>";
-			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\" class=\"row\">"  + fileNameTag + trashButton +  "</td>");
+			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\" class=\"file-table-row row\">"  + fileNameTag + trashButton +  "</td>");
 			         	rawHTML+=("</tr>");
 					}
 					rawHTML+=("</tbody></table>");

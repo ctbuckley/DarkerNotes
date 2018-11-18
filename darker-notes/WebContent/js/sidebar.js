@@ -10,4 +10,15 @@ $(document).ready(function () {
 $("#sidebarCollapse").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
+    // listen for mouse hovers to spawn delete button
+    deleteButtonListener();
 });
+
+// listen for hover to let delete button appear
+function deleteButtonListener() {
+	$('.file-table-row').hover(function() {
+		$(this).find('.delete-button').toggleClass('d-none');
+	}, function() {
+		$(this).find('.delete-button').toggleClass('d-none');
+	});
+}
