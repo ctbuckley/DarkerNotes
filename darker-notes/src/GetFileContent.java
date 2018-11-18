@@ -65,6 +65,12 @@ public class GetFileContent extends HttpServlet {
 				
 				System.out.println("Data: " + data);
 				
+				data = data.replace("\\", "\\\\");
+				
+				data = data.replaceAll("\"","\\\\\"");
+				
+				
+				
 				//Set up a JSON return
 				String objectToReturn =
 						  "{\n"
@@ -75,7 +81,6 @@ public class GetFileContent extends HttpServlet {
 								+ "\"fileName\": \"" + fileName + "\"\n"
 							+ "}\n" 
 						+ "}";
-				
 				
 				out.print(objectToReturn);
 				
