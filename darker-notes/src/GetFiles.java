@@ -99,7 +99,9 @@ public class GetFiles extends HttpServlet {
 					for (int j = 0; j < fileName.size(); j++) {
 		        		//names
 			         	rawHTML+=("<tr>");
-			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\">"  + fileName.get((j)) +  "</td>");
+			         	String trashButton = "<div class=\"col-lg-3 my-auto\"><button class=\"btn btn-outline-danger ml-auto\" onclick=\"deleteFile(" + aFileID.get(j) + ")\"><i class=\"fas fa-trash-alt\"></i></button></div>";
+			         	String fileNameTag = "<div class=\"col my-auto\"><span class=\"mr-auto\">" + fileName.get((j)) + "</span></div>";
+			         	rawHTML+=("<td onclick=\"loadFile('" + aFileID.get(j) + "')\" style=\"cursor: pointer;\" class=\"row\">"  + fileNameTag + trashButton +  "</td>");
 			         	rawHTML+=("</tr>");
 					}
 					rawHTML+=("</tbody></table>");

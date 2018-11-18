@@ -6,6 +6,11 @@
 	overflow-y: auto;
 }
 
+#sidebar-files::-webkit-scrollbar-thumb {
+	/* fixing black bar at bottomo bug */
+	background: none;
+}
+
 /* sidebar styling */
 
 #sidebar {
@@ -21,9 +26,6 @@
     background-color: rgb(33, 37, 40); /* the color of dark tables in Bootstrap */
     /* min-height: 86.5vh; */
     height: 75vh;
-}
-#sidebar i {
-    margin-right: 6px;
 }
 #sidebar .list-group-item {
     border-radius: 0;

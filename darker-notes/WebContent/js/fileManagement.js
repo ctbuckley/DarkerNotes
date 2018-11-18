@@ -140,14 +140,14 @@ function deleteFile(fileId) {
 	var currFileID = fileId;
 	var email = sessionStorage.getItem("email");
 	
-	if (currFileId != "-1") {
+	if (currFileID != "-1") {
 		//delete currFileid for user email
 		$.ajax({
 	    	type: "POST",
 	    	url: "DeleteFile",
 	    	async: true,
 	    	data: {
-				email: emailIn,
+				email: email,
 				fileId: currFileID
 	    	},
 	    	success: function(result) {
