@@ -176,6 +176,10 @@ $(document).ready(function () {
 		
 		// LOAD THE NEW NOTIFICATION AS IT COMES IN
 		loadNotifications()
+		
+		// Notify the user with an alert popup and wiggle the notification bell
+		wiggleNotificationBell(); // from notification.js
+		newPopupMsg($('#new-notification-popup'), event.data); // from app.js
 	}
 	socket.onclose = function(event) {
 		console.log("Disconnected in socket.js")

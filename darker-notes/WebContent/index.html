@@ -74,9 +74,11 @@
 				</div>
 				<!-- Notification button -->
 				<div id="notification-button-wrapper" class="nav-item nav-link d-none" data-toggle="tooltip" data-placement="left" title="">
-					<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
-						<i class="fas fa-bell fa-2x"></i>
-					</button>
+					<span id="new-notification-popup" class="d-inline-block" tabindex="0" data-toggle="tooltip" data-original-title="">
+						<button id="notification-button" type="button" class="btn btn-dark d-none" data-toggle="popover" data-container="#notification-button-wrapper" data-placement="bottom">
+							<i class="fas fa-bell fa-2x"></i>
+						</button>
+					</span>
 					<!-- Notification content -->
 					<div id="notification-content" class="d-none"></div>
 				</div>
@@ -90,6 +92,7 @@
 
 				</form>
 			</nav>
+			
 
 
 			<!-- Sidebar -->
@@ -354,6 +357,7 @@
 			</form>
 		</div>
 	</div>
+	
 
 		<!-- Printable -->
 		<div id="print-format">
