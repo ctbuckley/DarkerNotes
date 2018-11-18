@@ -1,3 +1,10 @@
+//Don't reload the page when pressing enter key
+//$("#share-form").submit(function(e) {
+//    if (e.keycode == 13) {
+//    	sendFile();
+//    	return false;
+//    }
+//});
 //Adds submit using enter functionality to specified input field id, calling functionCall
 function submitOnEnter(id, functionCall) {
 	$(id).on("keydown", function(e) {
@@ -13,6 +20,14 @@ submitOnEnter("#passIn", validateLogin);
 //for signup
 submitOnEnter("#nameIn-addUser", addUser);
 //for file share
-submitOnEnter("#shareEmail", sendFile);
+//$("#share-form").submit(function(e) {
+//	if (e.keycode == 13) {
+//		sendFile();
+//		return false;
+//	}
+//	else {
+//		return false;
+//	}
+//});
 
 
