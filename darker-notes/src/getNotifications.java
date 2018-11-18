@@ -61,36 +61,35 @@ public class getNotifications extends HttpServlet {
 			ps2.setString(2, "0");
 			rs2 = ps2.executeQuery();
 			
-			//Declare list to hold fileIDS
+			//Declare lists to hold notification data we want to display
 			ArrayList<Integer> notificationID = new ArrayList<Integer>();
 			ArrayList<String> fromNames = new ArrayList<String>();
-			
+			ArrayList<String> fileNames = new ArrayList<String>();
 			
 			
 			
 			
 			while (rs2.next()) {
-				notificationID.add(rs2.getInt("fileID"));
+				notificationID.add(rs2.getInt("notificationID"));
 				fromNames.add(rs2.getString("fromName"));
+				fileNames.add(rs2.getString("fileName"));
 			}
 			
-			rawHTML+=("<table class=\"table table-bordered table-hover\"><tbody>");
+			
 			if (notificationID.size() != 0) {
 				//rawHTML+=("<table class=\"table table-bordered table-dark\"><tbody>");
+				rawHTML+=("<table class=\"table table-bordered table-hover\"><tbody>");
 				for (int j = 0; j < notificationID.size(); j++) {
 	        		//names
 		         	rawHTML+=("<tr>");
-		         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\" style=\"cursor: pointer;\">"  + "New File from " + fromNames.get(j) +  "</td>");
+		         	rawHTML+=("<td onclick=\"handleNotification('" + notificationID.get(j) + "')\" style=\"cursor: pointer;\">"  + fileNames.get(j) + " from " + fromNames.get(j) +  "</td>");
 		         	rawHTML+=("</tr>");
 				}
 				rawHTML+=("</tbody></table>");
 			}
 			else {
 				//rawHTML+="<table class=\"table table-bordered table-dark\"><tbody>";
-				rawHTML+=("<tr>");
-	         	rawHTML+=("<td>No New Files</td>");
-	         	rawHTML+=("</tr>");
-	         	rawHTML+=("</tbody></table>");
+	         	rawHTML+=("<em>No new files</em>");
 			}
 			
 			
