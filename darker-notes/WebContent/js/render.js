@@ -13,6 +13,7 @@ converter.setOption('tables', true);
 var convert = function(sourceText, targetElement) {
 	var html = converter.makeHtml(sourceText)
 	targetElement.innerHTML = html;
+	console.log('source text', sourceText)
 	console.log('converted html', html)
 	console.log('target html', targetElement.innerHTML)
 	// render math in the preview-shade with KaTeX 
@@ -27,7 +28,8 @@ var convert = function(sourceText, targetElement) {
 
 /* Preview button code */
 $('#preview-button').click(function() {
-		$.when(convert(document.getElementById('text-area').innerText, document.getElementById('preview-shade'))).then(console.log('render markdown + LaTeX in preview-shade'));
+		$.when(convert(document.getElementById('text-area').innerText, document.getElementById('preview-shade')))
+		.then(console.log('render markdown + LaTeX in preview-shade'));
 });
 
 //disable preview button if there is no text in input box

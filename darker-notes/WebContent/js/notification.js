@@ -43,15 +43,15 @@ function loadNotifications() {
 }
 
 
+// unfortunately need these to pass data to acceptNotification and declineNotification
+var currNotificationRawData = "";
+var currNotificationID= "";
+var currNotificationFileName = "";
+var currNotificationFromName = "";
+
 function handleNotification(id) {
 	console.log("handleNotification id ", id);
-	
-	//display preview of file
-	//servlet call
-	
-	//retrieve rawData and fileName w/ notification id
-	
-	//pass notification id
+	currNotificationID = id;
 	
 	$.ajax({
     	type: "POST",
@@ -66,14 +66,19 @@ function handleNotification(id) {
     			//result.data.rawData
     			//result.data.fileName
     			//result.data.fromName
+    			
     			$('#notification-preview-title').html(result.data.fileName + " from " + result.data.fromName);
-    			convert(result.data.rawData, document.getElementById('notification-preview-file-content'));
+    			
+    			$.when(document.getElementById('notification-preview-file-content').innerHTML = result.data.rawData)
+    			.then(convert(document.getElementById('notification-preview-file-content').innerText, document.getElementById('notification-preview-file-content')));
+    			
+    			
+    			currNotificationRawData = result.data.rawData;
+    			currNotificationFileName = result.data.fileName;
+    			currNotificationFromName = result.data.fromName;
     			
     			//display preview modal with option to accept/decline file
     			$('#notification-preview-modal').modal('show');
-    			//also pass "id" to acceptNotification() or declineNotification()
-    			//set up 
-    			
     			
     		} else {
     			console.log("Error in RetrieveNotification")
@@ -97,18 +102,11 @@ function acceptNotification(notificationId, fileName, rawData) {
     	},
     	success: function(result) {
     		if (result.success == "true") {
-    			//display preview modal with option to accept/decline file
+    			console.log('acceptNotification')
+				// refresh sidebar file list to include accepted file
     			updateSidebar();
-    			loadNotifications()
-    			
-    			//Use below to set up preview window
-    			//result.data.rawData
-    			//result.data.fileName
-    			//result.data.fromName
-    			
-    			//also pass "id" to acceptNotification() or declineNotification()
-    			//set up 
-    			
+    			// refresh notification list after removing the notification
+    			loadNotifications() 
     			
     		} else {
     			console.log("Error in acceptNotification")
@@ -138,22 +136,13 @@ function declineNotification(id) {
     	url: "DeclineNotification",
     	async: true,
     	data: {
-			notificationId: notificationId
+			notificationId: id
     	},
     	success: function(result) {
     		if (result.success == "true") {
-    			//display preview modal with option to accept/decline file
-    			loadNotifications()
-    			
-    			//Use below to set up preview window
-    			//result.data.rawData
-    			//result.data.fileName
-    			//result.data.fromName
-    			
-    			//also pass "id" to acceptNotification() or declineNotification()
-    			//set up 
-    			
-    			
+    			console.log('declineNotification')
+    			// refresh notification list after removing the notification
+    			loadNotifications() 			
     		} else {
     			console.log("Error in declineNotification")
     		}
@@ -162,5 +151,11 @@ function declineNotification(id) {
 }
 
 // listen for clicks on accept and decline buttons
-$('#notification-accept-button').click(acceptNotification(id))
-$('#notification-decline-button').click(declineNotification(notificationId, fileName, rawData))
+$('#notification-accept-button').on('click', function() {
+	console.log('notification-accept-button CLICKED');
+	acceptNotification(currNotificationID, currNotificationFileName, currNotificationRawData);
+});
+$('#notification-decline-button').on('click', function() {
+	console.log('notification-decline-button CLICKED');
+	declineNotification(currNotificationID);
+});
