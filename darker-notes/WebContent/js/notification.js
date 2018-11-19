@@ -35,7 +35,6 @@ function loadNotifications() {
 			    	   })
 		    	   }
 	    	   );
-	    	   console.log($("#notification-content").text());
 	    	   if ($("#notification-content").text() == "No new files") {
 	    		   $("#notification-active").css("display", "none");
 	    	   }
