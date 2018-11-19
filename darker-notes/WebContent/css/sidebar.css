@@ -64,6 +64,7 @@ body {
 	/* scrolling */
 	display: block;
 	overflow-y: auto;
+	height: 66vh;
 }
 
 #sidebar-files::-webkit-scrollbar-thumb {
