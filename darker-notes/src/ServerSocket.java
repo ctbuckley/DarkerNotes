@@ -1,9 +1,4 @@
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.websocket.*; // for space
@@ -50,8 +45,8 @@ public class ServerSocket {
 		else if (action.equals("SendFile")) {
 			//add a new notification for the user
 			String emailTo = jsonObject.get("emailTo").getAsString();
-			String email = jsonObject.get("email").getAsString();
-			String fileID = jsonObject.get("fileID").getAsString();
+			//String email = jsonObject.get("email").getAsString();
+			//String fileID = jsonObject.get("fileID").getAsString();
 			
 			//Begin database access
 			if  (hm.get(emailTo) != null) {
