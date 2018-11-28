@@ -27,8 +27,6 @@ public class FileThread extends Thread {
 		String fileName = this.filename;
 		String rawData= this.rawdata;
 		
-		System.out.println("in a new filethread for " + email + " with file " + filename);
-		
 		//Set up variables to hold response
 		boolean success = true;
 		
@@ -61,8 +59,12 @@ public class FileThread extends Thread {
 				ps = conn.prepareStatement("INSERT INTO Files (rawData,fileName) VALUES (?,?);", Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, rawData);
 				ps.setString(2, fileName);
-				ps.executeUpdate();
-				rs6 = ps.getGeneratedKeys();
+				
+				synchronized(this) {
+					ps.executeUpdate();
+					rs6 = ps.getGeneratedKeys();
+				}
+				
 				
 				if(rs6.next()) {
 					newFileId=rs6.getInt(1);
@@ -73,7 +75,9 @@ public class FileThread extends Thread {
 				//Check if email already exists in our database
 				ps5 = conn.prepareStatement("SELECT * FROM Users WHERE email=?");
 				ps5.setString(1, email);
-				rs5 = ps5.executeQuery();
+				synchronized(this) {
+					rs5 = ps5.executeQuery();
+				}
 				rs5.next();
 				int uID = rs5.getInt("userID");
 				
@@ -83,11 +87,10 @@ public class FileThread extends Thread {
 				ps4 = conn.prepareStatement("INSERT INTO Access (userID, fileID) VALUES (?,?);");
 				ps4.setString(1, Integer.toString(uID));
 				ps4.setString(2, Integer.toString(newFileId));
-				ps4.executeUpdate();
 				
-				
-				
-				
+				synchronized(this) {
+					ps4.executeUpdate();
+				}
 				
 				
 			} catch(SQLException sqle) {
