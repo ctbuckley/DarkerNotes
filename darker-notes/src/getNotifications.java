@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -65,6 +66,7 @@ public class getNotifications extends HttpServlet {
 			ArrayList<Integer> notificationID = new ArrayList<Integer>();
 			ArrayList<String> fromNames = new ArrayList<String>();
 			ArrayList<String> fileNames = new ArrayList<String>();
+			LinkedList<String> rawData = new LinkedList<String>();
 			
 			
 			
@@ -73,6 +75,7 @@ public class getNotifications extends HttpServlet {
 				notificationID.add(rs2.getInt("notificationID"));
 				fromNames.add(rs2.getString("fromName"));
 				fileNames.add(rs2.getString("fileName"));
+				rawData.add("");
 			}
 			
 			
