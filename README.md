@@ -12,7 +12,7 @@ parts of our project.
 ### Documents can be rendered in real time to offer a preview of what they will look like, or they can saved to a pdf. 
 # ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/preview.png)
 
-### Additionally, users can log in to access saved documents or share documents with other users who have an account.
+### Additionally, users can log in to access saved documents or share documents with other users who have an account. All documents are automatically saved to the file drawer while the user is logged in.
 # ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/file_drawer.png)
 
 
