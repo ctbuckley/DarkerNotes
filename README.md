@@ -1,7 +1,20 @@
 # Darker Notes
 This repository contains all the pertinent information on our Markdown and LaTeX Note Editor. Our team is composed of: Alexander Gednov,
-Connor Buckley, Hriday Panchasara, Laurence Fong, and Tong Wu. See the appropriate documents for details on the different
+Connor Buckley, Laurence Fong, and Tong Wu. See the appropriate documents for details on the different
 parts of our project.
+
+### Darker Notes is a note-taking web application with Markdown and LaTeX support.
+# ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/editor.png)
+
+### We offer a help menu to show some of the syntax of Markdown and LaTeX.
+# ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/help.png)
+
+### Documents can be rendered in real time to offer a preview of what they will look like, or they can saved to a pdf. 
+# ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/preview.png)
+
+### Additionally, users can log in to access saved documents or share documents with other users who have an account.
+# ![Darker Notes](https://github.com/ctbuckley/DarkerNotes/blob/master/images/file_drawer.png)
+
 
 ## Instructions
 
